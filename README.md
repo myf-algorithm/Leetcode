@@ -17,6 +17,18 @@
 - 图
 - 双指针
 - 搜索树
+  - avl树
+  - b树
+  - b+树
+  - 二分搜索
+  - 二分搜索树
+  - 伸展树（splay tree）
+  - 树状数组（fenwick tree）
+  - 线段树（segment tree）
+  - 字典树（trie tree）
+  - 红黑树
+  - kd树
+  
 ## 算法
 - 递归
 - 动态规划
