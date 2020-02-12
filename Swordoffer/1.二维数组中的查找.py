@@ -5,18 +5,18 @@
 
 
 class Solution:
-    # 从左上角开始，大了往左，小了往下
+    # 从右上角开始，大了往左，小了往下
     def Find(self, target, array):
         if len(array) == 0 or len(array[0]) == 0:
             return False
-        i = 0
-        j = len(array[0]) - 1
+        i = 0   # i代表行
+        j = len(array[0]) - 1  # j代表列
         while i < len(array) and j >= 0:
             if array[i][j] == target:
                 return True
-            elif array[i][j] > target:
+            elif array[i][j] > target:  # 当前位置的数值比目标词大，向左移动
                 j = j - 1
-            else:
+            else:   # 当前位置的数值比目标词小，向下移动
                 i = i + 1
         return False
 
