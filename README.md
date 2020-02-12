@@ -1,7 +1,10 @@
 # Leetcode仓库
 包含了面试刷题的一些代码，使用Python实现
 ## Leetcode
+- 数组
 - 链表
+- 二叉树
+
 ## Swordoffer
 
 ## 华为机试
