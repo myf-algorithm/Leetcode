@@ -20,18 +20,17 @@ class Solution1:
         size = len(array)
         pos = size - 1
         cnt = 0
+        # pos从后往前开始遍历
         while cnt < size:
-            if array[pos] % 2 == 1:
-                tmp = array[pos]
-                for i in range(pos - 1, -1, -1):
+            if array[pos] % 2 == 1:  # 当前数值为奇数
+                tmp = array[pos]  # 暂存当前值到tmp
+                for i in range(pos - 1, -1, -1):  # 当前位置到倒数第二个位置整体向后移动一个位置
                     array[i + 1] = array[i]
-                array[0] = tmp
+                array[0] = tmp  # 移动完毕后，array[0]赋值为tmp
             else:
                 pos -= 1
             cnt += 1
         return array
-
-
 
 
 if __name__ == '__main__':
