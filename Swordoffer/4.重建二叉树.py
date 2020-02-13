@@ -41,6 +41,7 @@ class Solution:
         print(pRoot.val, end=" ")
         self.inorder(pRoot.right)
 
+
 if __name__ == '__main__':
     S = Solution()
     pre = [1, 2, 4, 7, 3, 5, 6, 8]

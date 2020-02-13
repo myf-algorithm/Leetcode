@@ -6,6 +6,7 @@
 
 
 class Solution:
+    # 辅助函数，寻找rotateArray中，从left到right的最小值
     def MininOrder(self, rotateArray, left, right):
         res = rotateArray[left]
         for i in range(left, right + 1):
