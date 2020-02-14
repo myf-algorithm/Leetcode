@@ -10,9 +10,10 @@
 
 class Solution:
     def IsPopOrder(self, pushV, popV):
-        stack = []
+        stack = []  # 辅助栈
         for i in pushV:
             stack.append(i)
+            # 每次向辅助栈添加元素时，都进行判断
             while stack and stack[-1] == popV[0]:
                 stack.pop()
                 popV.pop(0)
