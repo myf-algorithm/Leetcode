@@ -1,5 +1,8 @@
 # Leetcode仓库
 包含了面试刷题的一些代码，使用Python实现
+
+相关文档见个人知乎专栏：https://zhuanlan.zhihu.com/c_1175819811945476096
+
 ## Leetcode
 - 数组
 - 链表
@@ -8,7 +11,9 @@
 ## Swordoffer
 
 ## 华为机试
+
 ## PAT_B
+
 ## 数据结构
 - 链表
 - 二叉树
