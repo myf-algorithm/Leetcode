@@ -7,13 +7,16 @@ class ListNode:
 
 class Solution:
     def FindKthToTail(self, head, k):
-        if head == None :
+        if head == None:
             return
+        # 使用快慢指针，p2在前，p1在后
         p1 = p2 = head
+        # 先让p2前进k个节点
         for i in range(k):
             if p2 == None:
                 return
             p2 = p2.next
+        # 当p2到达末尾时，p1的位置就是倒数第k个节点
         while p2:
             p2 = p2.next
             p1 = p1.next
