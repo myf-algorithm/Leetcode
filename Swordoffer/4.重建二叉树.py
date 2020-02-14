@@ -20,8 +20,8 @@ class Solution:
         idx = tin.index(val)
         ltin = tin[0:idx]
         rtin = tin[(idx + 1):]
-        lpre = pre[1:(1 + len(ltin))]
-        rpre = pre[(1 + len(ltin)):]
+        lpre = pre[1:(1 + idx)]
+        rpre = pre[(1 + idx):]
         root = TreeNode(val)
         root.left = self.reConstructBinaryTree(lpre, ltin)
         root.right = self.reConstructBinaryTree(rpre, rtin)
