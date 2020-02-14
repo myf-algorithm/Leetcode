@@ -7,15 +7,15 @@ class ListNode:
 
 class Solution:
     def Merge(self, pHead1, pHead2):
-        res = ListNode(0)
-        tmp = res
+        res = ListNode(0)  # 定义初始节点
+        tmp = res  # 定义遍历节点
         p1 = pHead1
         p2 = pHead2
         while p1 and p2:
-            if p1.val < p2.val:
+            if p1.val < p2.val:  # 如果p1的值小于p2的值
                 tmp.next = p1
                 p1 = p1.next
-            else:
+            else:  # 如果p1的值大于等于p2的值
                 tmp.next = p2
                 p2 = p2.next
             tmp = tmp.next
