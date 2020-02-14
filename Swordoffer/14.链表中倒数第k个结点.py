@@ -13,7 +13,7 @@ class Solution:
         p1 = p2 = head
         # 先让p2前进k个节点
         for i in range(k):
-            if p2 == None:
+            if p2 == None:  # k大于链表的长度
                 return
             p2 = p2.next
         # 当p2到达末尾时，p1的位置就是倒数第k个节点
