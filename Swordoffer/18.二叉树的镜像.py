@@ -18,13 +18,14 @@ class Tree(object):
         self.root = None
 
     def add(self, item):
-        node = Node(item)
+        """给二叉树增加节点"""
+        node = Node(item)  # 根据item的值定义一个节点
         if self.root is None:
             self.root = node
             return
         queue = [self.root]
         while queue:
-            cur_node = queue.pop(0)
+            cur_node = queue.pop(0)  # 取出当前队列头中的节点
             if cur_node.lchild is None:
                 cur_node.lchild = node
                 return
@@ -40,9 +41,9 @@ class Tree(object):
         """广度遍历"""
         if self.root is None:
             return
-        queue = [self.root]
+        queue = [self.root]  # 使用队列实现二叉树的广度优先遍历
         while queue:
-            cur_node = queue.pop(0)
+            cur_node = queue.pop(0)  # 弹出队列的头元素，也就是列表的第一个元素
             print(cur_node.elem, end=" ")
             if cur_node.lchild is not None:
                 queue.append(cur_node.lchild)
