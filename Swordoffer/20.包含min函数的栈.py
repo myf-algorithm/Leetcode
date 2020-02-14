@@ -1,9 +1,9 @@
 # -*- coding:utf-8 -*-
 class Solution:
     def __init__(self):
-        self.stack = []
-        self.minstack = []
-        self.minm = float('inf')
+        self.stack = []  # 普通的栈
+        self.minstack = []  # 保存最小值的栈
+        self.minm = float('inf')  # 记录当前的最小值
 
     def push(self, node):
         self.stack.append(node)
@@ -25,6 +25,7 @@ class Solution:
 
     def min(self):
         return self.minstack[-1]
+
 
 if __name__ == '__main__':
     S = Solution()
