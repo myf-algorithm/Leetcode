@@ -15,8 +15,8 @@ class Solution:
             if len(s) == 2:
                 return list(set([s[0] + s[1], s[1] + s[0]]))
             ans = set([])
-            left = s[0]
-            right = dfs(s[1:])
+            left = s[0]  # 数组的首元素
+            right = dfs(s[1:])  # 数组的剩余元素
             for word in right:
                 for i in range(len(word) + 1):
                     ans.add(word[:i] + left + word[i:])
@@ -39,6 +39,22 @@ class Solution1:
                 if j not in list:
                     list.append(j)
         return list
+
+
+class Solution2:
+    def Permutation(self, ss):
+        if not ss:
+            return []
+        res = []
+        self.helper(ss, res, '')
+        return sorted(list(set(res)))
+
+    def helper(self, ss, res, path):
+        if not ss:
+            res.append(path)
+        else:
+            for i in range(len(ss)):
+                self.helper(ss[:i] + ss[i + 1:], res, path + ss[i])
 
 
 if __name__ == '__main__':
