@@ -5,6 +5,7 @@
 
 
 class Solution:
+    # 使用字典进行计数
     def MoreThanHalfNum_Solution(self, numbers):
         dict = {}
         for i in numbers:
@@ -18,6 +19,7 @@ class Solution:
 
 
 class Solution1:
+    # 使用不同数字进行对消的方法
     def MoreThanHalfNum_Solution(self, numbers):
         if numbers == []:
             return 0
