@@ -9,13 +9,13 @@
 class Solution:
     def FindGreatestSumOfSubArray(self, array):
         max_sum = array[0]
-        pre_sum = 0
+        pre_sum = 0  # pre_sum记录先前数组元素之和
         for i in array:
-            if pre_sum < 0:
+            if pre_sum < 0:  # 如果小于0，则将pre_sum设置为当前元素
                 pre_sum = i
             else:
-                pre_sum += i
-            if pre_sum > max_sum:
+                pre_sum += i  # 如果大于0，继续累加当前元素
+            if pre_sum > max_sum:  # 判断是否跟新max_sum
                 max_sum = pre_sum
         return max_sum
 
