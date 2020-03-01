@@ -16,4 +16,4 @@ class Solution:
 
 if __name__ == '__main__':
     S = Solution()
-    print(S.PrintMinNumber([1, 2, 3, 4, 5, 6, 7, 0]))
+    print(S.PrintMinNumber([3, 32, 321]))
