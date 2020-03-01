@@ -11,6 +11,7 @@ class Solution:
         min2 = min3 = min5 = 0
         curnum = 1
         while curnum < index:
+            # 得到T2 * 2，T3 * 3，T5 * 5中最小的那个数
             minnum = min(baselist[min2] * 2, baselist[min3] * 3, baselist[min5] * 5)
             baselist.append(minnum)
             # 找到第一个乘以2的结果大于当前最大丑数M的数字，也就是T2
