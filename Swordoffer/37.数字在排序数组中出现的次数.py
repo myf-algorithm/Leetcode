@@ -17,9 +17,11 @@ class Solution:
         if data[mid] == k:
             start, end = mid, mid
             for i in range(mid, -1, -1):
-                if data[i] == k: start -= 1
+                if data[i] == k:
+                    start -= 1
             for j in range(mid + 1, len(data)):
-                if data[j] == k: end += 1
+                if data[j] == k:
+                    end += 1
             return end - start
         elif data[mid] > k:
             return self.GetNumberOfK(data[:mid], k)
