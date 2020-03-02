@@ -65,10 +65,10 @@ class Solution:
         copy = []
         for i in data:
             copy.append(i)
-        copy = self.quick_sort(copy)
+        copy = self.quick_sort(copy)    # 使用快速排序对原始数组进行排序
         for i in range(len(copy)):
-            count += data.index(copy[i])
-            data.remove(copy[i])
+            count += data.index(copy[i])    # 遍历排序后数组中的每个元素，找到在原始数组中的索引
+            data.remove(copy[i])    # 累加这个索引，并将该元素从原始数组中删除
         return count % 1000000007
 
 
