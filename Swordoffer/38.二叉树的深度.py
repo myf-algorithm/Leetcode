@@ -14,6 +14,7 @@ class Solution:
             return 1
         return max(self.TreeDepth(pRoot.left), self.TreeDepth(pRoot.right)) + 1
 
+
 if __name__ == '__main__':
     S = Solution()
     root = TreeNode(0)
