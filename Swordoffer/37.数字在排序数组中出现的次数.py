@@ -11,6 +11,10 @@ class Solution:
         return num
 
     def GetNumberOfK(self, data, k):
+        """
+        二分查找到给定的数字及其坐标
+        以该坐标为中点，向前向后找到这个数字的始–终位置
+        """
         if len(data) < 1:
             return 0
         mid = len(data) // 2
