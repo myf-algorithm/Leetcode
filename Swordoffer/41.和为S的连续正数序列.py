@@ -5,6 +5,14 @@
 # 没多久,他就得到另一组连续正数和为100的序列:18,19,20,21,22。
 # 现在把问题交给你,你能不能也很快的找出所有和为S的连续正数序列? Good Luck!
 
+# 以计算9为例
+# 1,2
+# 1,2,3
+# 1,2,3,4
+# 2,3,4
+# 2,3,4,5
+# 3,4,5
+# 4,5
 
 class Solution:
     def FindContinuousSequence(self, tsum):
@@ -27,4 +35,4 @@ class Solution:
 
 if __name__ == "__main__":
     S = Solution()
-    print(S.FindContinuousSequence(55))
+    print(S.FindContinuousSequence(9))
