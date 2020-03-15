@@ -13,13 +13,13 @@ class Solution:
         return sum(num)
 
     def Add(self, num1, num2):
-        unit = num1 ^ num2
-        carry_bit = num1 & num2
+        unit = num1 ^ num2  # 不计进位的和
+        carry_bit = num1 & num2  # 进位
         while carry_bit != 0:
             temp_a = unit
             temp_b = carry_bit << 1
-            unit = temp_a ^ temp_b
-            carry_bit = temp_a & temp_b
+            unit = temp_a ^ temp_b  # carry_bit移位后计算的不计进位的和
+            carry_bit = temp_a & temp_b  # carry_bit移位后计算的进位
         return unit
 
 
