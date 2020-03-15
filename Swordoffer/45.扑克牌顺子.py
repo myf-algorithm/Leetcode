@@ -18,10 +18,10 @@ class Solution:
         zeros = numbers.count(0)
         for i, v in enumerate(numbers[:-1]):
             if v != 0:
-                if numbers[i + 1] == v:
+                if numbers[i + 1] == v: # 有重复的数字，直接返回False
                     return False
-                zeros -= (numbers[i + 1] - numbers[i] - 1)
-                if zeros < 0:
+                zeros -= (numbers[i + 1] - numbers[i] - 1)  # 累减相邻之间数字的差值
+                if zeros < 0:   # 当zeros为0时
                     return False
         return True
 
