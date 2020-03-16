@@ -19,20 +19,20 @@ class Solution:
         flag = 0
         stack = [pRoot]
         while stack:
-            tmp = []
-            tmp_stack = []
+            tmp = []  # 定义临时列表，存储节点数值
+            tmp_stack = []  # 定义临时列表，作为堆栈，存储二叉树每层的节点
             for node in stack:
                 tmp.append(node.val)
                 if node.left:
-                    tmp_stack.append(node.left)
+                    tmp_stack.append(node.left)  # 保存节点的左子节点
                 if node.right:
-                    tmp_stack.append(node.right)
+                    tmp_stack.append(node.right)  # 保存节点的右子节点
             if flag % 2 == 1:
-                printArr.append(tmp[::-1])
+                printArr.append(tmp[::-1])  # 存储printArr结果，反转tmp值列表
             else:
-                printArr.append(tmp)
+                printArr.append(tmp)  # 存储printArr结果，tmp值列表
             flag = flag + 1
-            stack = tmp_stack[:]
+            stack = tmp_stack[:]  # 更新stack
         return printArr
 
 
