@@ -15,7 +15,9 @@ class Solution:
         printArr = []
         stack = [pRoot]
         while stack:
+            # 定义临时列表，存储节点数值
             tmp = []
+            # 定义临时列表，存储数值
             tmp_stack = []
             for node in stack:
                 tmp.append(node.val)
