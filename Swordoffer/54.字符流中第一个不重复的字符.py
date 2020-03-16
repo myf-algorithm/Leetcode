@@ -23,7 +23,6 @@ class Solution:
             self.queue.append(char)
 
 
-
 if __name__ == '__main__':
     S = Solution()
     S.Insert('1')

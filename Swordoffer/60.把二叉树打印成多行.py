@@ -26,6 +26,7 @@ class Solution:
             stack = tmp_stack[:]
         return printArr
 
+
 if __name__ == '__main__':
     S = Solution()
     root = TreeNode(0)

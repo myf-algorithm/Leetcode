@@ -34,6 +34,7 @@ class Solution:
             p = p.next
         return p
 
+
 if __name__ == "__main__":
     S = Solution()
     node = TreeLinkNode(1)
