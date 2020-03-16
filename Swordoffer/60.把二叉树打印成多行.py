@@ -8,6 +8,7 @@ class TreeNode:
 
 
 class Solution:
+    # 等价于二叉树的广度优先遍历
     def Print(self, pRoot):
         if not pRoot:
             return []
