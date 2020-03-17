@@ -22,16 +22,18 @@ class Solution:
     def GetNext(self, pNode):
         if pNode == None:
             return None
-        # case a
+        # 对应情况a
         if pNode.right:
             tmp = pNode.right
             while (tmp.left):
                 tmp = tmp.left
             return tmp
-        p = pNode.next
+        p = pNode.next  # p为节点的父节点
+        # 进入while循环则对应情况c
         while (p and p.right == pNode):
-            pNode = p
-            p = p.next
+            pNode = p  # 暂存pNode
+            p = p.next  # 向祖先节点搜索
+        # 直接return对应情况b
         return p
 
 
