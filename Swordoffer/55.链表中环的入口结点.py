@@ -116,16 +116,16 @@ class SingleLinkList(object):
         head = self.__head
         if head == None or head.next == None:
             return None
-        slow = fast = head
+        slow = fast = head  # 初始化快慢指针，指向头结点
         while fast and fast.next:
-            slow = slow.next
-            fast = fast.next.next
-            if slow == fast:
-                fast = head
+            slow = slow.next  # 慢指针，每次移动一步
+            fast = fast.next.next  # 快指针，每次移动两步
+            if slow == fast:  # 快慢指针相遇，说明有环
+                fast = head  # 将快指针置为头结点
                 while fast != slow:
-                    fast = fast.next
-                    slow = slow.next
-                return fast
+                    fast = fast.next  # 快指针，每次移动一步
+                    slow = slow.next  # 慢指针，每次移动一步
+                return fast  # 当快慢指针再次相遇时，快指针即为环的入口结点
         return None
 
 
