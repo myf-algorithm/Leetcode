@@ -13,11 +13,11 @@ class Solution:
         return self.recursiveTree(pRoot.left, pRoot.right)
 
     def recursiveTree(self, left, right):
-        if not left and not right:
+        if not left and not right:  # 左右子节点都为空
             return True
-        if not left or not right:
+        if not left or not right:  # 左右子节点其中一个为空
             return False
-        if left.val == right.val:
+        if left.val == right.val:  # 左右子节点都存在，并且值相等，进行下一次递归
             return self.recursiveTree(left.left, right.right) and self.recursiveTree(left.right, right.left)
         return False
 
