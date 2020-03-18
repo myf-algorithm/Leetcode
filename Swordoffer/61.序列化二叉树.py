@@ -2,6 +2,7 @@
 # 请实现两个函数，分别用来序列化和反序列化二叉树
 # 先序遍历，root->left->right
 
+
 class TreeNode:
     def __init__(self, x):
         self.val = x
@@ -39,6 +40,42 @@ class Solution:
         node.left, sp = self.deserialize(s, sp)
         node.right, sp = self.deserialize(s, sp)
         return node, sp
+
+
+class Solution1:
+    def Serialize(self, pRoot):
+        res = []
+
+        def Preorder(root):
+            if root == None:
+                res.append('#')
+                return
+            res.append(root.val)
+            Preorder(root.left)
+            Preorder(root.right)
+
+        Preorder(pRoot)
+        return res
+
+    def Deserialize(self, s):
+        retList = s
+
+        def dePreorder():
+            if retList == []:
+                return None
+            rootval = retList[0]
+            del retList[0]
+            if rootval == '#':
+                return None
+            node = TreeNode(int(rootval))
+
+            node.left = dePreorder()
+            node.right = dePreorder()
+
+            return node
+
+        root = dePreorder()
+        return root
 
 
 if __name__ == '__main__':
