@@ -13,6 +13,27 @@ class Solution:
                 return i
         return -1
 
+# 阿里达摩院机器翻译实习1面
+class solution1:
+    def __init__(self):
+        self.dic = {}
+        self.queue = []
+
+    def FirstNotRepeatingChar(self, str):
+        for i in str:
+            if i not in self.dic:
+                self.dic[i] = 1
+                self.queue.append(i)
+            else:
+                self.dic[i] += 1
+        for i in self.queue:
+            if self.dic[i] == 1:
+                return i
+
+
 if __name__ == '__main__':
     S = Solution()
     print(S.FirstNotRepeatingChar("algkajgakgjkajlgjlo"))
+
+    S1 = solution1()
+    print(S1.FirstNotRepeatingChar("to"))
