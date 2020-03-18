@@ -14,7 +14,7 @@ class Solution:
     def KthNode(self, pRoot, k):
         stack = []
         while True:
-            if pRoot:
+            if pRoot:   # 一直遍历到pRoot的最左子节点
                 stack.append(pRoot)
                 pRoot = pRoot.left
             else:
@@ -26,6 +26,24 @@ class Solution:
                     return pRoot.val
                 else:
                     pRoot = pRoot.right
+
+
+# 递归中序遍历写法
+class Solution1:
+    def KthNode(self, pRoot, k):
+        numRes = []
+
+        def inOreder(pRoot):
+            if pRoot == None:
+                return None
+            inOreder(pRoot.left)
+            numRes.append(pRoot)
+            inOreder(pRoot.right)
+
+        inOreder(pRoot)
+        if len(numRes) < k or k < 1:
+            return None
+        return numRes[k - 1]
 
 
 if __name__ == '__main__':
