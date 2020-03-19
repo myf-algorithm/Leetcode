@@ -8,6 +8,7 @@
 # 因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，
 # 路径不能再次进入该格子。
 
+
 class Solution:
     def hasPath(self, matrix, rows, cols, path):
         if len(matrix) == 0 or len(matrix) != rows * cols or len(path) == 0:
