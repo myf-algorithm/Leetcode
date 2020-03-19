@@ -114,7 +114,6 @@ class Solution2:
             min_heap_top = heapq.heappop(self.min_heap)
             heapq.heappush(self.max_heap, -min_heap_top)
 
-    # 题目getmedian参数少了个s
     def GetMedian(self, s):
         if self.count & 1:
             return -self.max_heap[0]
