@@ -12,7 +12,7 @@ class Solution:
         memories = set()
 
         def dfs(i, j):
-            if not (sum(map(int, str(i) + str(j))) <= threshold) or (i, j) in memories:
+            if not (sum(map(int, str(i) + str(j))) <= threshold) or (i, j) in memories:  # 本次移动满足题目条件
                 return
             memories.add((i, j))
             if i != rows - 1:
