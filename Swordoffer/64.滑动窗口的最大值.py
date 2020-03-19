@@ -22,19 +22,20 @@ class Solution:
             return []
         deque = []
         if len(num) >= size:
-            index = []
+            index = []  # 存储索引的列表
+            # 首先遍历前size个元素
             for i in range(size):
-                while len(index) > 0 and num[i] > num[index[-1]]:
-                    index.pop()
-                index.append(i)
+                while len(index) > 0 and num[i] > num[index[-1]]:  # 如果当前元素比前一个元素大
+                    index.pop()  # 将前一个元素索引删掉
+                index.append(i)  # 将当前元素索引加入
             for i in range(size, len(num)):
-                deque.append(num[index[0]])
-                while len(index) > 0 and num[i] > num[index[-1]]:
-                    index.pop()
-                if len(index) > 0 and index[0] <= i - size:
-                    index.pop(0)
-                index.append(i)
-            deque.append(num[index[0]])
+                deque.append(num[index[0]])  # 加入当前窗口的最大值
+                while len(index) > 0 and num[i] > num[index[-1]]:  # 如果当前元素比前一个元素大
+                    index.pop()  # 将前一个元素索引删掉
+                if len(index) > 0 and index[0] <= i - size:  # 如果索引列表长度大于size
+                    index.pop(0)  # 弹出索引列表的头元素
+                index.append(i)  # 将当前元素索引加入
+            deque.append(num[index[0]])  # 加入当前窗口的最大值
         return deque
 
 
