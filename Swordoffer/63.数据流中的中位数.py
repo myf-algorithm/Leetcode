@@ -13,9 +13,9 @@ class Solution:
         self.count = 0
 
     def Insert(self, num):
-        if self.count & 1 == 0:
+        if self.count & 1 == 0:  # count为偶数
             self.left.append(num)
-        else:
+        else:  # count为奇数
             self.right.append(num)
         self.count += 1
 
@@ -91,6 +91,35 @@ class Solution1:
         if len(large) > len(small):
             return float(large[0])
         return (large[0] - small[0]) / 2.0
+
+
+import heapq
+
+
+class Solution2:
+    def __init__(self):
+        self.count = 0  # 定义计数变量
+        self.max_heap = []  # 定义最大堆
+        self.min_heap = []  # 定义最小堆
+
+    def Insert(self, num):
+        self.count += 1 # 计数累加
+        # 将数据放到最大堆中
+        heapq.heappush(self.max_heap, -num)
+        # 将最大堆中的堆顶元素放到最小堆中
+        max_heap_top = heapq.heappop(self.max_heap)
+        heapq.heappush(self.min_heap, -max_heap_top)
+        # 如果最小堆和最大堆之间的差距大于1，将最小堆中的堆顶放进最大堆
+        if self.count & 1:
+            min_heap_top = heapq.heappop(self.min_heap)
+            heapq.heappush(self.max_heap, -min_heap_top)
+
+    # 题目getmedian参数少了个s
+    def GetMedian(self, s):
+        if self.count & 1:
+            return -self.max_heap[0]
+        else:
+            return (self.min_heap[0] - self.max_heap[0]) / 2.0
 
 
 if __name__ == '__main__':
