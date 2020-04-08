@@ -25,7 +25,7 @@ while True:
     try:
         board = []
         for i in range(9):
-            board.append(input().split())
+            board.append(input()[1:18].split(','))
 
         rows, cols, squs = [set() for i in range(9)], [set() for i in range(9)], [set() for i in range(9)]
         for i, row in enumerate(board):
@@ -35,7 +35,9 @@ while True:
                     cols[j].add(num)
                     squs[i // 3 * 3 + j // 3].add(num)
         solver(board, rows, cols, squs, 0, 0)
-        for i in range(9):
-            print(' '.join(board[i]))
+        for i in range(8):
+            print('{' + ','.join(board[i])[0:18] + '}')
+        print('{' + ','.join(board[8])[0:18] + '}', end='')
+        break
     except:
         break
