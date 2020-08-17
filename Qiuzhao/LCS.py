@@ -1,3 +1,7 @@
+# res[i][j]表示截止字符串A第i个字符和字符串B第j个字符的最长公共子序列
+# 定义状态方程
+
+
 def LCS(string1, string2):
     len1 = len(string1)
     len2 = len(string2)
