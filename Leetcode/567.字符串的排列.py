@@ -31,3 +31,4 @@ class Solution1:
                 c2[s2[left]] -= 1
                 left += 1
         return False
+
