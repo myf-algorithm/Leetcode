@@ -14,7 +14,7 @@ class Solution:
         for node, depth, pos in queue:
             if node:
                 queue.append((node.left, depth + 1, pos * 2))
-                queue.append((node.left, depth + 1, pos * 2 + 1))
+                queue.append((node.right, depth + 1, pos * 2 + 1))
                 if cur_depth != depth:
                     cur_depth = depth
                     left = pos
