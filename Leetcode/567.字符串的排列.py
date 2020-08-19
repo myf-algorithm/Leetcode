@@ -20,7 +20,6 @@ class Solution1:
         l1, l2 = len(s1), len(s2)
         c1 = collections.Counter(s1)
         c2 = collections.Counter()
-        cnt = 0
         left = right = 0
         while right < l2:
             c2[s2[right]] += 1
