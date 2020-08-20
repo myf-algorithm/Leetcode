@@ -14,6 +14,7 @@
 # 3,4,5
 # 4,5
 
+
 class Solution:
     def FindContinuousSequence(self, tsum):
         small, big = 1, 2
@@ -33,6 +34,31 @@ class Solution:
         return res
 
 
+class Solution1:
+    # 双指针做法：
+    # 指针i表示窗口左边界，指针j表示窗口右边界
+    # 1、当sum<target时，j指针右移
+    # 2、当sum>target时，i指针右移
+    # 3、当sum=target时，窗口内的数组加入res，i指针右移
+    def FindContinuousSequence(self, target):
+        i, j = 1, 1
+        sum = 0
+        res = []
+        while i <= target // 2:
+            if sum < target:
+                sum += j
+                j += 1
+            elif sum > target:
+                sum -= i
+                i += 1
+            else:
+                arr = list(range(i, j))
+                res.append(arr)
+                sum -= i
+                i += 1
+        return res
+
+
 if __name__ == "__main__":
-    S = Solution()
+    S = Solution1()
     print(S.FindContinuousSequence(9))
