@@ -24,7 +24,6 @@ class Solution:
         return B
 
 
-
 if __name__ == '__main__':
     S = Solution()
     print(S.multiply([2, 1, 3, 1, 4]))
