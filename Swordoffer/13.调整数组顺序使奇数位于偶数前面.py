@@ -41,7 +41,7 @@ class Solution2:
         d = deque()
         for i in range(len(array)):
             if array[i] % 2 == 0:
-                a.append(array[i])
+                d.append(array[i])
             if array[len(array) - i - 1] % 2 == 1:
                 d.appendleft(array[len(array) - i - 1])
         return list(d)
