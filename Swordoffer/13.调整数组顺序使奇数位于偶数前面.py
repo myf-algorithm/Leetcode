@@ -47,6 +47,21 @@ class Solution2:
         return list(d)
 
 
+class Solution3:
+    def reOrderArray(self, array):
+        n = len(array)
+        head = 0
+        tail = n - 1
+        while head < tail:
+            while array[head] % 2 != 0:
+                head += 1
+            while array[tail] % 2 == 0:
+                tail -= 1
+            array[head], array[tail] = array[tail], array[head]
+            head += 1
+            tail -= 1
+
+
 if __name__ == '__main__':
     S = Solution()
     a = [1, 2, 3, 4, 5, 6, 7, 8]
