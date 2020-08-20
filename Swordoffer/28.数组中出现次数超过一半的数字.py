@@ -59,6 +59,7 @@ class Solution2:
                 return k
         return 0
 
+
 if __name__ == '__main__':
     S = Solution1()
     print(S.MoreThanHalfNum_Solution([1, 2, 2]))
