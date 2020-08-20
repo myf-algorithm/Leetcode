@@ -3,13 +3,15 @@
 
 
 class Solution:
-    def GetNumberOfK1(self, data, k):
+    def GetNumberOfK(self, data, k):
         num = 0
         for i in data:
             if i == k:
                 num = num + 1
         return num
 
+
+class Solution1:
     def GetNumberOfK(self, data, k):
         """
         二分查找到给定的数字及其坐标
@@ -33,6 +35,33 @@ class Solution:
             return self.GetNumberOfK(data[mid + 1:], k)
 
 
+class Solution2:
+    def GetNumberOfK(self, data, k):
+        left = 0
+        right = len(data) - 1
+        leftk = self.getleftk(data, k, left, right)
+        rightk = self.getrightk(data, k, left, right)
+        return rightk - leftk + 1
+
+    def getleftk(self, data, k, left, right):
+        while left <= right:
+            middle = (left + right) // 2
+            if data[middle] < k:
+                left = middle + 1
+            else:
+                right = middle - 1
+        return left
+
+    def getrightk(self, data, k, left, right):
+        while left <= right:
+            middle = (left + right) // 2
+            if data[middle] <= k:
+                left = middle + 1
+            else:
+                right = middle - 1
+        return right
+
+
 if __name__ == "__main__":
-    S = Solution()
+    S = Solution2()
     print(S.GetNumberOfK([1, 2, 2, 5, 6, 7, 12, 14, 15], 2))
