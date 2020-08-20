@@ -6,6 +6,7 @@
 # 连续子向量的最大和为8(从第0个开始,到第3个为止)。给一个数组，
 # 返回它的最大连续子序列的和，你会不会被他忽悠住？(子向量的长度至少是1)
 
+
 class Solution:
     def FindGreatestSumOfSubArray(self, array):
         max_sum = array[0]
@@ -22,4 +23,4 @@ class Solution:
 
 if __name__ == '__main__':
     S = Solution()
-    print(S.FindGreatestSumOfSubArray([1, 2, 3, 4, 5, 6, 7, 0]))
+    print(S.FindGreatestSumOfSubArray([1, 2, 3, -100, 5, 6, 7, 0]))
