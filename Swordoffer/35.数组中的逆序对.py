@@ -54,6 +54,11 @@ class Solution:
             j -= 1
         return left + right + count
 
+    # 基于排序的解题方法：
+    # 1、将原始数组拷贝
+    # 2、对拷贝的数组做快速排序
+    # 3、遍历排序后的数组中的最小元素
+    # 4、依次判断原始数组中最小元素前面元素的个数
     def quick_sort(self, data):
         if len(data) < 2:
             return data
@@ -66,10 +71,10 @@ class Solution:
         copy = []
         for i in data:
             copy.append(i)
-        copy = self.quick_sort(copy)    # 使用快速排序对原始数组进行排序
+        copy = self.quick_sort(copy)  # 使用快速排序对原始数组进行排序
         for i in range(len(copy)):
-            count += data.index(copy[i])    # 遍历排序后数组中的每个元素，找到在原始数组中的索引
-            data.remove(copy[i])    # 累加这个索引，并将该元素从原始数组中删除
+            count += data.index(copy[i])  # 遍历排序后数组中的每个元素，找到在原始数组中的索引
+            data.remove(copy[i])  # 累加这个索引，并将该元素从原始数组中删除
         return count % 1000000007
 
 
@@ -79,6 +84,7 @@ count = 0
 class Solution1:
     def InversePairs(self, data):
         global count
+
         def MergeSort(lists):
             global count
             if len(lists) <= 1:
@@ -99,6 +105,7 @@ class Solution1:
             result += right[r:]
             result += left[l:]
             return result
+
         MergeSort(data)
         return count % 1000000007
 
