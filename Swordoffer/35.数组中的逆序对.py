@@ -8,6 +8,7 @@
 # 对于%75的数据,size<=10^5
 # 对于%100的数据,size<=2*10^5
 
+
 class Solution:
     def InversePairs(self, data):
         length = len(data)
