@@ -21,4 +21,4 @@ class Solution:
 
 if __name__ == "__main__":
     S = Solution()
-    print(S.FindNumbersWithSum([1, 2, 3, 4, 5, 6, 7, 8, 9]))
+    print(S.FindNumbersWithSum([1, 2, 3, 4, 5, 6, 7, 8, 9], 10))
