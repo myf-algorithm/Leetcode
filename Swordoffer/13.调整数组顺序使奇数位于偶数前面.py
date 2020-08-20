@@ -33,6 +33,19 @@ class Solution1:
         return array
 
 
+from collections import deque
+
+
+class Solution2:
+    def reOrderArray(self, array):
+        d = deque()
+        for i in range(len(array)):
+            if array[i] % 2 == 0:
+                a.append(array[i])
+            if array[len(array) - i - 1] % 2 == 1:
+                d.appendleft(array[len(array) - i - 1])
+        return list(d)
+
 if __name__ == '__main__':
     S = Solution()
     a = [1, 2, 3, 4, 5, 6, 7, 8]
