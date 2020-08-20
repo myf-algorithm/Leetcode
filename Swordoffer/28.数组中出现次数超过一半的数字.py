@@ -18,6 +18,9 @@ class Solution:
         return 0
 
 
+# 想象下面示例的情况：
+# 1 1 1 1 1 1
+# 2 3 4 5
 class Solution1:
     # 使用不同数字进行对消的方法
     def MoreThanHalfNum_Solution(self, numbers):
@@ -33,6 +36,28 @@ class Solution1:
                 cnt -= 1
         return val if numbers.count(val) * 2 > len(numbers) else 0
 
+
+class Solution2:
+    # 使用默认词典的方法
+    def MoreThanHalfNum_Solution(self, numbers):
+        length = len(numbers)
+        d = {}
+        d[1] = 2
+        for num in numbers:
+            d[num] = d.setdefault(num, 0) + 1
+        for key in d.keys():
+            if d[key] * 2 > length:
+                return int(key)
+        return 0
+
+    def MoreThanHalfNum_Solution1(self, numbers):
+        from collections import Counter
+        count_dic = Counter(numbers)
+        length = len(numbers)
+        for k, v in count_dic.items():
+            if v * 2 > length:
+                return k
+        return 0
 
 if __name__ == '__main__':
     S = Solution1()
