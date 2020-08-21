@@ -38,3 +38,4 @@ class Solution:
 if __name__ == '__main__':
     S = Solution()
     print(S.NumberOf1Between1AndN_Solution(256))
+
