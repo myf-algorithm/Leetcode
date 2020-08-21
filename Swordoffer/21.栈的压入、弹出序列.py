@@ -22,4 +22,4 @@ class Solution:
 
 if __name__ == '__main__':
     S = Solution()
-    print(S.IsPopOrder([1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6]))
+    print(S.IsPopOrder([1, 2, 3, 4, 5], [4, 3, 5, 2, 1]))
