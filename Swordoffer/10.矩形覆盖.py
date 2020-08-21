@@ -17,6 +17,5 @@ class Solution:
             dp.append(dp[-1] + dp[-2])
         return dp[-1]
 
-
 S = Solution()
 print(S.rectCover(8))
