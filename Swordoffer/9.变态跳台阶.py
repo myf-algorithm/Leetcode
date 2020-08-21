@@ -17,5 +17,26 @@ class Solution:
         return ret
 
 
-S = Solution()
+class Solution1:
+    def jumpFloor(self, number):
+        return 1 << (number - 1)
+
+
+class Solution2:
+    def jumpFloor(self, number):
+        if number == 1:
+            return 1
+        else:
+            return 2 * self.jumpFloor(number - 1)
+
+
+class Solution3:
+    def jumpFloor(self, number):
+        num = [1, 1]
+        while len(num) <= number:
+            num.append(2 * num[-1])
+        return num[-1]
+
+
+S = Solution3()
 print(S.jumpFloor(3))
