@@ -47,6 +47,7 @@ class Solution2:
         return list(d)
 
 
+
 if __name__ == '__main__':
     S = Solution2()
     a = [1, 2, 3, 4, 5, 6, 7, 8]
