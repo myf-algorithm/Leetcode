@@ -47,26 +47,8 @@ class Solution2:
         return list(d)
 
 
-class Solution3:
-    def reOrderArray(self, array):
-        n = len(array)
-        head = 0
-        tail = n - 1
-        while head < tail:
-            # 头指针遇到了第一个偶数
-            while array[head] % 2 != 0:
-                head += 1
-            # 尾指针遇到了第一个奇数
-            while array[tail] % 2 == 0:
-                tail -= 1
-            # 将奇偶数位置互换
-            array[head], array[tail] = array[tail], array[head]
-            # 奇偶指针向中间移动
-            head += 1
-            tail -= 1
-
 
 if __name__ == '__main__':
-    S = Solution()
+    S = Solution2()
     a = [1, 2, 3, 4, 5, 6, 7, 8]
     print(S.reOrderArray(a))
