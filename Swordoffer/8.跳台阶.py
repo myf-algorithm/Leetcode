@@ -4,6 +4,7 @@
 
 # f[n] = f[n-1] + f[n-2]
 
+
 class Solution:
     def jumpFloor(self, number):
         if number == 1 or number == 2:
