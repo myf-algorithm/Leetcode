@@ -41,11 +41,10 @@ class Solution2:
         d = deque()
         for i in range(len(array)):
             if array[i] % 2 == 0:
-                d.append(array[i])
+                d.append(array[i])  # 从左到右遍历数组，加在双向队列右边
             if array[len(array) - i - 1] % 2 == 1:
-                d.appendleft(array[len(array) - i - 1])
+                d.appendleft(array[len(array) - i - 1])  # 从右到左遍历数组，加在双向队列左边
         return list(d)
-
 
 
 if __name__ == '__main__':
