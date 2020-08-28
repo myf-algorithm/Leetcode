@@ -21,6 +21,7 @@ class Solution:
         from functools import cmp_to_key
         if not numbers:
             return ""
+        # 输入字符串转化为列表，列表中存储各位数字的字符
         numbers = list(map(str, numbers))
         numbers.sort(key=cmp_to_key(lambda x, y: int(x + y) - int(y + x)))
         return '0' if numbers[0] == '0' else ''.join(numbers)
