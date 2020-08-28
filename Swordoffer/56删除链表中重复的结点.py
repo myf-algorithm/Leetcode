@@ -119,12 +119,17 @@ class Solution:
 
         # 使用前后指针，进行移动遍历
         while cur != None:
+            # 更新后指针
             while cur.next and cur.next.elem == pre.next.elem:
                 cur = cur.next
+
+            # 更新前指针
             if pre.next == cur:  # 对应没有相邻重复元素的情况
                 pre = pre.next
             else:  # 对应具有相邻重复元素，已经进行过移位
                 pre.next = cur.next  # 跳过重复元素
+
+            # 更新后指针
             cur = cur.next
         return dummy.next
 
