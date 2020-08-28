@@ -117,7 +117,7 @@ class Solution:
         pre = dummy
         cur = dummy.next
 
-        # 使用前后指针，进行移动遍历
+        # 使用前后指针，进行移动遍历，分别为pre和cur
         while cur != None:
             # 更新后指针
             while cur.next and cur.next.elem == pre.next.elem:
