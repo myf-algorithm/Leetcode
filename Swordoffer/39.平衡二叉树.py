@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 # 输入一棵二叉树，判断该二叉树是否是平衡二叉树。
 
+
 class TreeNode:
     def __init__(self, x):
         self.val = x
