@@ -23,6 +23,7 @@ class Solution:
             return ""
         # 输入字符串转化为列表，列表中存储各位数字的字符
         numbers = list(map(str, numbers))
+        # 使用cmp_to_key和lambda方法进行排序
         numbers.sort(key=cmp_to_key(lambda x, y: int(x + y) - int(y + x)))
         return '0' if numbers[0] == '0' else ''.join(numbers)
 
