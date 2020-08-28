@@ -40,13 +40,15 @@ class Solution2:
         left = 0
         right = len(data) - 1
         leftk = self.getleftk(data, k, left, right)
+        print(leftk)
         rightk = self.getrightk(data, k, left, right)
+        print(rightk)
         return rightk - leftk + 1
 
     def getleftk(self, data, k, left, right):
         while left <= right:
             middle = (left + right) // 2
-            if data[middle] < k:
+            if data[middle] < k:  # k必须严格大于data[middle]
                 left = middle + 1
             else:
                 right = middle - 1
