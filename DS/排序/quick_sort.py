@@ -51,8 +51,17 @@ def quick_sort(alist, first, last):
     quick_sort(alist, low + 1, last)
 
 
+def quick_sort_simple(nums):
+    if len(nums) < 2:
+        return nums
+    left = quick_sort_simple([i for i in nums[1:] if i <= nums[0]])
+    right = quick_sort_simple([j for j in nums[1:] if j > nums[0]])
+    return left + [nums[0]] + right
+
+
 if __name__ == "__main__":
     li = [54, 26, 93, 17, 77, 31, 44, 55, 20]
     print(li)
     quick_sort(li, 0, len(li) - 1)
     print(li)
+    print(quick_sort_simple(li))
