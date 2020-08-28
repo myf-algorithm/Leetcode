@@ -48,16 +48,16 @@ class Solution2:
     def getleftk(self, data, k, left, right):
         while left <= right:
             middle = (left + right) // 2
-            if data[middle] < k:  # k必须严格大于data[middle]
+            if data[middle] < k:
                 left = middle + 1
-            else:
+            else:  # 当k等于data[middle]时
                 right = middle - 1
         return left
 
     def getrightk(self, data, k, left, right):
         while left <= right:
             middle = (left + right) // 2
-            if data[middle] <= k:
+            if data[middle] <= k:  # 当k等于data[middle]时
                 left = middle + 1
             else:
                 right = middle - 1
