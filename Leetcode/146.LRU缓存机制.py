@@ -125,13 +125,15 @@ class Solution:
                     s.pop()
                     sd[d[1]] = d[2]
                     s.insert(0, d[1])
-
             elif d[0] == 2:
                 if d[1] in s:
                     ret.append(sd[d[1]])
                     s.remove(d[1])
-
                     s.insert(0, d[1])
                 else:
                     ret.append(-1)
         return ret
+
+
+S = Solution()
+print(S.LRU([[1, 1, 1], [1, 2, 2], [1, 3, 2], [2, 1], [1, 4, 4], [2, 2]], 3))
