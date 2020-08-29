@@ -24,9 +24,11 @@ class LRUCache(object):
         """
         self.capacity = capacity
         self.hashmap = {}
+
         # 新建两个节点head和tail
         self.head = ListNode()
         self.tail = ListNode()
+
         # 初始化链表为head <-> tail
         self.head.next = self.tail
         self.tail.prev = self.head
