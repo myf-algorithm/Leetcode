@@ -99,3 +99,39 @@ class LRUCache(object):
 # obj = LRUCache(capacity)
 # param_1 = obj.get(key)
 # obj.put(key,value)
+
+#
+# lru design
+# @param operators int整型二维数组 the ops
+# @param k int整型 the k
+# @return int整型一维数组
+#
+class Solution:
+    def LRU(self, operators, k):
+        # write code here
+        sd, s = {}, []
+        ret = []
+        for d in operators:
+            if d[0] == 1:
+                if len(s) < k:
+                    if d[1] not in s:
+                        sd[d[1]] = d[2]
+                        s.insert(0, d[1])
+                    else:
+                        sd[d[1]] = d[2]
+                        s.remove(d[1])
+                        s.insert(0, d[1])
+                else:
+                    s.pop()
+                    sd[d[1]] = d[2]
+                    s.insert(0, d[1])
+
+            elif d[0] == 2:
+                if d[1] in s:
+                    ret.append(sd[d[1]])
+                    s.remove(d[1])
+
+                    s.insert(0, d[1])
+                else:
+                    ret.append(-1)
+        return ret
