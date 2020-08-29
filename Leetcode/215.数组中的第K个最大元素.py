@@ -10,10 +10,10 @@ class Solution(object):
         """
         heap = [float('-inf') for i in range(k)]
         for i in nums:
-            if i > heap[0]:
-                heapq.heappop(heap)
-                heapq.heappush(heap, i)
-        return heap[0]
+            if i > heap[0]:  # 当前元素比堆顶最小元素大
+                heapq.heappop(heap)  # 去除堆顶最小元素
+                heapq.heappush(heap, i)  # 将当前元素加入堆
+        return heap[0]  # 获取堆中的最小值
 
     def findKthLargest_2(self, nums, k):
         """
