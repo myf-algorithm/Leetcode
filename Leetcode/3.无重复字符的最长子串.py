@@ -21,7 +21,7 @@ class Solution:
         left = 0
         max_l = 0
         for i in range(len(s)):
-            if s[i] in s[left: i]:
+            if s[i] in s[left: i]:  # 发现当前元素s[i]出现过
                 left += s[left: i].index(s[i]) + 1
             l = i - left + 1
             if l > max_l:
