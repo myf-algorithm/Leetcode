@@ -31,10 +31,20 @@ class Solution:
         pHead.next = None
         return p
 
-    def travel_list(self, pHead):   # 遍历链表，打印节点的值
+    def travel_list(self, pHead):  # 遍历链表，打印节点的值
         while pHead:
             print(pHead.val, end=' ')
             pHead = pHead.next
+
+
+# 简洁写法
+class Solution1:
+    # 返回ListNode
+    def ReverseList(self, pHead):
+        pre, cur = None, pHead
+        while cur:
+            cur.next, pre, cur = pre, cur, cur.next
+        return pre
 
 
 if __name__ == '__main__':
