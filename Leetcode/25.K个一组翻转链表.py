@@ -11,16 +11,14 @@ class Solution:
         def revrese(head, K):
             pre, cur = None, head
             for _ in range(K):
-                tmp = cur.next
-                cur.next = pre
-                pre = pre, cur
-                cur = tmp
+                cur.next, pre, cur = pre, cur, cur.next
             return pre, head
 
         pre = dummy = ListNode(0)
         dummy.next = head
 
         while pre.next:
+
             # 判断剩余节点个数是否有 k 个，若没有直接返回。
             # 另一个目的是将 cur 定位到 k+1 个节点的位置，方便后续的拼接。
             cur = pre.next
