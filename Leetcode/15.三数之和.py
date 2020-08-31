@@ -9,6 +9,7 @@ class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         nums.sort()
         res, k = [], 0
+        # k表示每次迭代的起始位置
         for k in range(len(nums) - 2):
             if nums[k] > 0:
                 break
