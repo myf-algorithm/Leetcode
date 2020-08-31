@@ -148,7 +148,6 @@ class Solution(object):
         return uf.get_count() - 1
 
 
-#
 # 判断岛屿数量
 # @param grid char字符型二维数组
 # @return int整型
