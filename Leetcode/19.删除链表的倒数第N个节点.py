@@ -40,6 +40,22 @@ class Solution:
         q.next = q.next.next
         return a.next
 
+    def removeNthFromEnd_slowfast(self, head: ListNode, n: int) -> ListNode:
+        slow = head
+        fast = head
+        for i in range(n):
+            fast = fast.next
+        if not fast:
+            return head.next
+        while fast.next:
+            fast = fast.next
+            slow = slow.next
+        if slow.next.next:
+            slow.next = slow.next.next
+        else:
+            slow.next = None
+        return head
+
 
 def generateList(l: list) -> ListNode:
     prenode = ListNode(0)
