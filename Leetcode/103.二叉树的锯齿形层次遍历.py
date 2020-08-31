@@ -15,11 +15,11 @@ class Solution(object):
         if not root:
             return []
         res = []
-        cur_level = [root]
+        cur_level = [root]  # current列表
         count = 0
         while cur_level:
-            tmp = []
-            next_level = []
+            tmp = []  # 定义临时列表，存储每行的值
+            next_level = []  # 定义临时列表，存储每行的节点
             for node in cur_level:
                 tmp.append(node.val)
                 if node.left:
