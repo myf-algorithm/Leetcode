@@ -16,7 +16,8 @@ class Solution:
         return max_lenth
 
     def lengthOfLongestSubstring1(self, s: str) -> int:  # 滑动窗口
-        if not s: return 0
+        if not s:
+            return 0
         left = 0
         max_l = 0
         for i in range(len(s)):
