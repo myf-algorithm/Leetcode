@@ -18,6 +18,19 @@ class Solution:
             pHead = pHead.next  # 移动到下一个位置
         return head
 
+    def ReverseList_point(self, pHead):
+        # write code here
+        if pHead == None:
+            return pHead
+        pre = None
+        cur = pHead
+        while cur:
+            next = cur.next
+            cur.next = pre
+            pre = cur
+            cur = next
+        return pre
+
     # 递归首先找到新链表的头部节点，然后递归栈返回，层层反转
     # 首先找到新链表的头结点（即遍历到原链表的最后一个节点返回最后节点）
     # 执行函数体后续代码，将原链表中的尾节点指向原尾节点的前置节点
