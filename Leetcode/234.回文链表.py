@@ -42,6 +42,7 @@ class Solution(object):
             tmp = cur.next
             cur.next = pre
             pre, cur = cur, tmp
+        # pre为后半部分反转链表的头节点
         while pre and head:
             if pre.val != head.val:
                 return False
