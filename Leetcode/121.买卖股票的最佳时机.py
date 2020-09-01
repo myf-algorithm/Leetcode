@@ -62,6 +62,19 @@ class Solution(object):
             max_profit = max(max_profit, temp)
         return max_profit
 
+    def maxProfit1(self, prices):
+        # write code here
+        if len(prices) == 0:
+            return 0
+        res = 0
+        min_price = prices[0]
+        for i in range(len(prices)):
+            if prices[i] < min_price:
+                min_price = prices[i]
+            else:
+                res = max(res, prices[i] - min_price)
+        return res
+
 
 if __name__ == '__main__':
     S = Solution()
