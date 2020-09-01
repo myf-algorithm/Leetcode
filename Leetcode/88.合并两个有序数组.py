@@ -44,6 +44,7 @@ class Solution(object):
             nums1[p1 + p2:] = nums2[p2:]
 
 
+# 两个指针的写法
 class Solution1:
     def merge(self, A, m, B, n):
         if not A:
