@@ -25,6 +25,6 @@ class Solution:
             cur.next = pre  # 反转
             pre = cur  # 更新pre
             cur = next  # 更新cur
-        a.next = d
-        b.next = c
+        a.next = d  # 连接头
+        b.next = c  # 连接尾
         return dummy.next
