@@ -76,6 +76,30 @@ class Solution(object):
             root = root.right
         return True
 
+    # 验证是否为完全二叉树
+    def isValidCBT(self, head):
+        if not head:
+            return True
+        isLeaf = False
+        queue = []
+        queue.append(head)
+        while queue:
+            head = queue.pop(0)
+            left = head.left
+            right = head.right
+            if (not left and right) or (isLeaf and (left or right)):
+                # （not left） and  right 右边存在 左边不存在
+                #  或者是进入到全是叶节点状态后 有左或者右
+                # 这两种情况都会返回F
+                return False
+            if left:
+                queue.append(left)
+            if right:
+                queue.append(right)
+            if not left or not right:
+                isLeaf = True
+        return True
+
 
 if __name__ == '__main__':
     S = Solution()
