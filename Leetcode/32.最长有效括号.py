@@ -17,3 +17,25 @@ class Solution(object):
                     dp[i] = dp[i - 1] + dp[i - dp[i - 1] - 2] + 2
                 res = max(res, dp[i])
         return res
+
+
+class Solution_Stack(object):
+    def longestValidParentheses(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        if not s:
+            return 0
+        res = 0
+        stack = [-1]
+        for i in range(len(s)):
+            if s[i] == "(":
+                stack.append(i)
+            else:
+                stack.pop()
+                if not stack:
+                    stack.append(i)
+                else:
+                    res = max(res, i - stack[-1])
+        return res
