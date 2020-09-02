@@ -56,7 +56,8 @@ class Solution:
 
 class Solution1:
     def findMedianinTwoSortedAray(self, arr1, arr2):
-        if not arr1 or not arr2: return -1
+        if not arr1 or not arr2:
+            return -1
         l1, r1, l2, r2 = 0, len(arr1) - 1, 0, len(arr2) - 1
         m1 = (len(arr1) - 1) // 2
         m2 = m1
