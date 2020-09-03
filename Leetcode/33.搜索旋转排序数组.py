@@ -34,13 +34,17 @@ class Solution1:
                 return mid
             if nums[0] <= nums[mid]:
                 if nums[0] <= target < nums[mid]:
+                    # 下一轮搜索区间为[left, mid - 1]
                     right = mid - 1
                 else:
+                    # 下一轮搜索区间为[mid + 1, right]
                     left = mid + 1
             if nums[mid] <= nums[-1]:
                 if nums[mid] <= target <= nums[-1]:
+                    # 下一轮搜索区间为[mid + 1, right]
                     left = mid + 1
                 else:
+                    # 下一轮搜索区间为[left, mid - 1]
                     right = mid - 1
         return -1
 
