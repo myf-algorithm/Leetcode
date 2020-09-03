@@ -42,3 +42,5 @@ if __name__ == '__main__':
     node2.left = node3
     node2.right = node4
     print(S.maxPathSum(root))
+
+# 关于递归地讲解：https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/solution/124di-gui-de-jing-sui-ji-lu-yi-xia-by-821218213/
