@@ -19,6 +19,16 @@ class Solution:
         return ret
 
 
+# 返回索引
+class Solution1:
+    def twoSum(self, numbers, target):
+        memory = {}
+        for i in range(len(numbers)):
+            if target - numbers[i] in memory:
+                return [memory[target - numbers[i]] + 1, i + 1]
+            memory[numbers[i]] = i
+
+
 if __name__ == "__main__":
     S = Solution()
     print(S.FindNumbersWithSum([1, 2, 3, 4, 5, 6, 7, 8, 9], 10))
