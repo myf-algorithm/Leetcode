@@ -43,7 +43,6 @@ if __name__ == '__main__':
     node2.right = node4
     print(S.maxPathSum(root))
 
-
 # 关于递归地讲解：https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/solution/124di-gui-de-jing-sui-ji-lu-yi-xia-by-821218213/
 # 二叉树递归算法的基础结构：
 # def dfs(root):
