@@ -39,3 +39,6 @@ class Solution(object):
 if __name__ == '__main__':
     S = Solution()
     print(S.permute1([1, 2, 3]))
+
+# 回溯法详解：https://www.nowcoder.com/practice/4bcf3081067a4d028f95acee3ddcd2b1?tpId=117&&tqId=34964&rp=1&ru=/ta/job-code-high&qru=/ta/job-code-high/question-ranking
+# 回溯法、深度优先搜索（DFS）、动态规划、递归之间的区别
