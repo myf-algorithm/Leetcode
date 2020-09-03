@@ -43,4 +43,14 @@ if __name__ == '__main__':
     node2.right = node4
     print(S.maxPathSum(root))
 
+
 # 关于递归地讲解：https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/solution/124di-gui-de-jing-sui-ji-lu-yi-xia-by-821218213/
+# 二叉树递归算法的基础结构：
+# def dfs(root):
+#     if not root: return
+#     dfs(root.left)
+#     dfs(root.right)
+# 在此基础上进行返回值，参数，外部变量的设计
+# 外部变量：使用self.res来记录最大的路径值
+# 递归函数的参数：只需要一个根节点遍历完二叉树就行，且最大值必须要遍历完才知道是不是最大值，只使用root
+# 返回值的设计：
