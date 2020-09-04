@@ -32,6 +32,5 @@ class Solution1:
             right_node = right_node.right
             right_height += 1
         if left_height == right_height:
-            return pow(2,left_height) - 1
+            return pow(2, left_height) - 1
         return 1 + self.countNodes(root.left) + self.countNodes(root.right)
-
