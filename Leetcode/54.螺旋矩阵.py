@@ -1,3 +1,5 @@
+#-*- coding:utf-8 -*-
+
 class Solution(object):
     def spiralOrder(self, matrix):
         """
@@ -6,22 +8,45 @@ class Solution(object):
         """
         if not matrix:
             return []
-        R, C = len(matrix), len(matrix[0])  # ¾ØÕóµÄĞĞÊı£¬ÁĞÊı
-        seen = [[False] * C for _ in matrix]  # ³õÊ¼»¯¼¯ºÏ£¬¼ÇÂ¼ÒÑ¾­×ß¹ıµÄ×ø±ê
-        ans = []  # ³õÊ¼»¯£¬´æ´¢±éÀúºóµÄ¾ØÕóÔªËØ
-        dr = [0, 1, 0, -1]  # ·½ÏòÊÇ£ºÓÒ£¬ÏÂ£¬×ó£¬ÉÏ
+        R, C = len(matrix), len(matrix[0])  # çŸ©é˜µçš„è¡Œæ•°ï¼Œåˆ—æ•°
+        seen = [[False] * C for _ in matrix]  # åˆå§‹åŒ–é›†åˆï¼Œè®°å½•å·²ç»èµ°è¿‡çš„åæ ‡
+        ans = []  # åˆå§‹åŒ–ï¼Œå­˜å‚¨éå†åçš„çŸ©é˜µå…ƒç´ 
+        dr = [0, 1, 0, -1]  # æ–¹å‘æ˜¯ï¼šå³ï¼Œä¸‹ï¼Œå·¦ï¼Œä¸Š
         dc = [1, 0, -1, 0]
-        r = c = di = 0  # ¾ØÕóÔªËØ£¬·½Ïò±äÁ¿³õÊ¼»¯
+        r = c = di = 0  # çŸ©é˜µå…ƒç´ ï¼Œæ–¹å‘å˜é‡åˆå§‹åŒ–
         for _ in range(R * C):
-            ans.append(matrix[r][c])  # ´æ´¢±éÀú¾ØÕó¹ıµÄÔªËØ
-            seen[r][c] = True  # ´æ´¢±éÀú¹ıµÄ×ø±ê
-            cr, cc = r + dr[di], c + dc[di]  # ÏÈ¼ÇÂ¼ÏÂÒ»²½×ø±ê£¬ÓÃÓÚÅĞ¶ÏÏÂÒ»²½ÔõÃ´×ß
-            if 0 <= cr < R and 0 <= cc < C and not seen[cr][cc]:  # ÅĞ¶Ï×ø±êÊÇ·ñĞè±äÏò£¬ÇÒÃ»ÓĞ±éÀú¹ı
+            ans.append(matrix[r][c])  # å­˜å‚¨éå†çŸ©é˜µè¿‡çš„å…ƒç´ 
+            seen[r][c] = True  # å­˜å‚¨éå†è¿‡çš„åæ ‡
+            cr, cc = r + dr[di], c + dc[di]  # å…ˆè®°å½•ä¸‹ä¸€æ­¥åæ ‡ï¼Œç”¨äºåˆ¤æ–­ä¸‹ä¸€æ­¥æ€ä¹ˆèµ°
+            if 0 <= cr < R and 0 <= cc < C and not seen[cr][cc]:  # åˆ¤æ–­åæ ‡æ˜¯å¦éœ€å˜å‘ï¼Œä¸”æ²¡æœ‰éå†è¿‡
                 r, c = cr, cc
             else:
-                di = (di + 1) % 4  # ¸Ä±ä·½Ïò£¬ÓÒÏÂ×óÉÏÎªÒ»È¦£¬·ÀÖ¹·½Ïò×ø±êÔ½½ç
-                r, c = r + dr[di], c + dc[di]  # ÏÂÒ»²½×ø±ê
+                di = (di + 1) % 4  # æ”¹å˜æ–¹å‘ï¼Œå³ä¸‹å·¦ä¸Šä¸ºä¸€åœˆï¼Œé˜²æ­¢æ–¹å‘åæ ‡è¶Šç•Œ
+                r, c = r + dr[di], c + dc[di]  # ä¸‹ä¸€æ­¥åæ ‡
         return ans
+
+
+# è¯·ç¼–å†™ä¸€ä¸ªç®—æ³•ï¼Œå°†çŸ©é˜µé¡ºæ—¶é’ˆæ—‹è½¬90åº¦ã€‚
+# zip()æ˜¯Pythonçš„ä¸€ä¸ªå†…å»ºå‡½æ•°ï¼Œå®ƒæ¥å—ä¸€ç³»åˆ—å¯è¿­ä»£çš„å¯¹è±¡ä½œä¸ºå‚æ•°ï¼Œ
+# å°†å¯¹è±¡ä¸­å¯¹åº”çš„å…ƒç´ æ‰“åŒ…æˆä¸€ä¸ªä¸ªtupleï¼ˆå…ƒç»„ï¼‰ï¼Œç„¶åè¿”å›ç”±è¿™äº›tuplesç»„æˆçš„listï¼ˆåˆ—è¡¨ï¼‰ã€‚
+# è‹¥ä¼ å…¥å‚æ•°çš„é•¿åº¦ä¸ç­‰ï¼Œåˆ™è¿”å›listçš„é•¿åº¦å’Œå‚æ•°ä¸­é•¿åº¦æœ€çŸ­çš„å¯¹è±¡ç›¸åŒã€‚
+# åˆ©ç”¨*å·æ“ä½œç¬¦ï¼Œå¯ä»¥å°†list unzipï¼ˆè§£å‹ï¼‰
+
+class Rotate:
+    def rotateMatrix(self, mat, n):
+        rotated = zip(*mat[::-1])
+        return rotated
+
+
+class Rotate1:
+    def rotateMatrix(self, mat, n):
+        res = []
+        for i in range(0, n):
+            row = []
+            for j in range(0, n):
+                row.append(mat[n - j - 1][i])
+            res.append(row)
+        return res
 
 
 if __name__ == '__main__':
@@ -31,3 +56,14 @@ if __name__ == '__main__':
         [4, 5, 6],
         [7, 8, 9]
     ]))
+
+    a = [1, 2, 3]
+    b = [4, 5, 6]
+    zipped = zip(a, b)
+    print(zipped)
+
+    m = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    n = zip(*m)
+    print(n)
+    rotated = zip(*m[::-1])
+    print(rotated)
