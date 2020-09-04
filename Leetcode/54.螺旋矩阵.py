@@ -61,10 +61,10 @@ if __name__ == '__main__':
     a = [1, 2, 3]
     b = [4, 5, 6]
     zipped = zip(a, b)
-    print(zipped)
+    print(list(zipped))
 
     m = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     n = zip(*m)
-    print(n)
+    print(list(n))
     rotated = zip(*m[::-1])
-    print(rotated)
+    print(list(rotated))
