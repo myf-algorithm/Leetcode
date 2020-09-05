@@ -45,5 +45,6 @@ class Solution1:
                 ret.append(ret[j] + [i])
         return ret
 
+
 S = Solution1()
-S.subsets([1,2,3])
+S.subsets([1, 2, 3])
