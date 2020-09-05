@@ -33,3 +33,13 @@ class Solution:
                     cur.append(nums[j])
             res.append(cur)
         return res
+
+
+class Solution1:
+    def subsets(self, A):
+        # write code here
+        ret = [[]]
+        for i in A:
+            for j in range(len(ret)):
+                ret.append(ret[j] + [i])
+        return ret
