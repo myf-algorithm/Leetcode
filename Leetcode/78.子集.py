@@ -40,6 +40,10 @@ class Solution1:
         # write code here
         ret = [[]]
         for i in A:
-            for j in range(len(ret)):
+            m = len(ret)
+            for j in range(m):
                 ret.append(ret[j] + [i])
         return ret
+
+S = Solution1()
+S.subsets([1,2,3])
