@@ -7,52 +7,42 @@
 # 但是与"aa.a"和"ab*a"均不匹配
 
 
-class Solution:
-    # s和pattern都是字符串
-    def match(self, s, pattern):
-        # s和pattern都为空
-        if not s and not pattern:
-            return False
-        # s和pattern直接匹配
-        if s == pattern:
+class Solution_so:
+    def isMatch(self, string: str, pattern: str) -> bool:
+        m = len(string)
+        n = len(pattern)
+        if not m and not n:
             return True
-        # 当s为'', 如果pattern为'.',则返回True
-        # 当s为'', 如果pattern长度为1且不为'.', 或者pattern第二个字符不是*, 则pattern不可能为空, 返回False
-        # 若pattern长度不为1, 且第二个字符为*, pattern还有空的可能, 从第三个字符开始迭代
-        elif s == '':
-            if pattern == '.':
-                return True
-            elif len(pattern) == 1 or pattern[1] != '*':
-                return False
-            else:
-                return self.match(s, pattern[2:])
-        # 如果pattern长度不小于二, 而且pattern的第二个字符不是*的情况下
-        # 当 pattern[0] 不等于s[0], 且不为 . 的时候, s和pattern必不相等
-        # 否则, s 和 pattern 都右移一位, 继续比较
-        if len(pattern) >= 2 and pattern[1] != '*':
-            if s[0] != pattern[0] and pattern[0] != '.':
-                return False
-            else:
-                return self.match(s[1:], pattern[1:])
-        # 如果pattern长度不小于2, 且pattern第二个字符为*的情况下
-        # 如果s[0]不等于pattern[0], 且pattern[0]不为 . , 那么第一位比较不成功,
-        # pattern必须后移两位继续比较后面是否能和s第一位匹配
-        # 如果s[0]等于pattern[0], 或者pattern[0]为 . , 第一位匹配, 那么会有
-        # 1. aaa 和 a*a 这种情况, 星号代表了多个a, 因此s需要不断右移一位继续比较
-        # 2. a 和 a*a 中这情况, 这时候星号代表0个a, 因此s不需要右移, pattern需要右移两位
-        # 3. abc 和 a*bc 这种情况, 星号代表了1个a, s右移一位, pattern右移两位继续比较
-        elif len(pattern) >= 2 and pattern[1] == '*':
-            if s[0] != pattern[0] and pattern[0] != '.':
-                return self.match(s, pattern[2:])
-            else:
-                return self.match(s[1:], pattern) or self.match(s, pattern[2:]) or self.match(s[1:], pattern[2:])
-        # 除去上述pattern不小于2情况, 只剩下pattern等于1的情况, 因此如果pattern为".", 而且s长度为1, 返回True
-        elif pattern == '.' and len(s) == 1:
-            return True
-        return False
+        dp = [[False] * (n + 1) for _ in range(m + 1)]
+        string = '#' + string
+        pattern = '#' + pattern
+
+        dp[0][0] = True
+        for i in range(m + 1):
+            for j in range(1, n + 1):
+                if i == 0:
+                    if j > 1 and pattern[j] == '*':
+                        dp[i][j] = dp[i][j - 2]
+                elif string[i] == pattern[j] or pattern[j] == '.':
+                    dp[i][j] = dp[i - 1][j - 1]
+                elif pattern[j] == '*':
+                    if string[i] == pattern[j - 1] or pattern[j - 1] == '.':
+                        dp[i][j] = dp[i - 1][j] or dp[i][j - 2]
+                    else:
+                        dp[i][j] = dp[i][j - 2]
+        return dp[m][n]
 
 
-class Solution1:
+import re
+
+
+class Solution_re:
+    def isMatch(self, s: str, p: str) -> bool:
+        ans = re.fullmatch(p, s)
+        return ans != None
+
+
+class Solution_dic:
     # s, pattern都是字符串
     def __init__(self):
         self.dic = {}
@@ -74,6 +64,27 @@ class Solution1:
         return self.dic[(s, p[2:])]
 
 
+class Solution_dp:
+    def isMatch(self, s, p):
+        if not s and not p:
+            return True
+        if (s and not p) or (not s and p and p != '*'):
+            return False
+        dp = [[False for _ in range(len(p) + 1)] for _ in range(len(s) + 1)]
+        dp[0][0] = True
+        for i in range(len(p) + 1):
+            if dp[0][i - 1]:
+                if p[i - 1] == '*':
+                    dp[0][i] = True
+        for i in range(1, len(s) + 1):
+            for j in range(1, len(p) + 1):
+                if s[i - 1] == p[j - 1] or p[j - 1] == '?':
+                    dp[i][j] = dp[i - 1][j - 1]
+                elif p[j - 1] == '*':
+                    dp[i][j] = dp[i - 1][j - 1] or dp[i][j - 1] or dp[i - 1][j]
+        return dp[len(s)][len(p)]
+
+
 if __name__ == '__main__':
-    S = Solution1()
-    print(S.match('aaa', 'a*a'))
+    S = Solution_dp()
+    print(S.isMatch('aaa', 'a*a'))
