@@ -11,6 +11,7 @@ class Solution(object):
         while i < n:
             left = intervals[i][0]
             right = intervals[i][1]
+            # 下一个左边的值小于等于当前右边的值，合并
             while i < n - 1 and intervals[i + 1][0] <= right:
                 i += 1
                 right = max(intervals[i][1], right)
