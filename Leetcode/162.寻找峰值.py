@@ -38,7 +38,6 @@ class Solution_traverse:
 
 class Solution_traverse_a:
     def solve(self, a):
-        # write code here
         a.insert(0, float('-inf'))
         a.append(float('-inf'))
         res = []
