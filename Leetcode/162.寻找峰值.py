@@ -7,25 +7,14 @@ class Solution(object):
         left = 0
         right = len(nums) - 1
         while left < right:
+            # 这种写法比 (left+right)//2 求mid的方法好，一些语言这样写可以防止溢出
             mid = left + (right - left) // 2
+            # 如果满足该条件说明山峰可能是在 mid 的右侧，因为各个元素不同，所以if的条件是 >
             if nums[mid] < nums[mid + 1]:
                 left = mid + 1
             else:
                 right = mid
         return left
-
-    def findPeakElement1(self, nums):
-        l, r = 1, len(nums)
-        nums = [float('-inf')] + nums + [float('-inf')]
-        while l < r:
-            m = (l + r) // 2
-            if nums[m] > nums[m - 1] and nums[m] > nums[m + 1]:
-                return m - 1
-            elif nums[m] < nums[m - 1]:
-                r = m - 1
-            else:
-                l = m + 1
-        return l - 1
 
 
 class Solution_traverse:
@@ -45,3 +34,15 @@ class Solution_traverse:
                 if a[i] >= a[i - 1] and a[i] >= a[i + 1]:
                     return i
         return -1
+
+
+class Solution_traverse_a:
+    def solve(self, a):
+        # write code here
+        a.insert(0, float('-inf'))
+        a.append(float('-inf'))
+        res = []
+        for i in range(1, len(a) - 1):
+            if a[i] >= a[i - 1] and a[i] >= a[i + 1]:
+                res.append(i - 1)
+        return max(res)
