@@ -28,6 +28,53 @@ class Solution:
         return '0' if numbers[0] == '0' else ''.join(numbers)
 
 
+class Solution1(object):
+    def minNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: str
+        """
+        n = len(nums)
+        if n == 0:
+            return ""
+        for i in range(n):
+            nums[i] = str(nums[i])
+        for i in range(n):
+            for j in range(i + 1, n):
+                if nums[i] + nums[j] > nums[j] + nums[i]:
+                    nums[i], nums[j] = nums[j], nums[i]
+        if nums[0] == '0':
+            nums.pop(0)
+        return "".join(nums)
+
+
+from typing import List
+
+
+class Solution2:
+    def minNumber(self, nums: List[int]) -> str:
+
+        arr = [str(i) for i in nums]
+
+        def quick_sort(left, right):
+            if left >= right: return
+            low, high = left, right
+            target = arr[left]
+
+            while left < right:
+                while left < right and arr[right] + target >= target + arr[right]: right -= 1
+                arr[left] = arr[right]
+                while left < right and arr[left] + target <= target + arr[left]: left += 1
+                arr[right] = arr[left]
+
+            arr[left] = target
+            quick_sort(low, left - 1)
+            quick_sort(right + 1, high)
+
+        quick_sort(0, len(arr) - 1)
+        return ''.join(arr)
+
+
 if __name__ == '__main__':
     S = Solution()
     print(S.PrintMinNumber([3, 32, 321]))
