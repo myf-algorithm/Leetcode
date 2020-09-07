@@ -5,31 +5,28 @@ class Solution(object):
         :type t: str
         :rtype: str
         """
-        from collections import Counter
-        mem = Counter(t)
-        t_len = len(t)
+        from collections import defaultdict
+        findout = defaultdict(int)
+        for i in t:
+            findout[i] += 1
+        min_len, res = float('inf'), ""
+        l, counter = len(s), len(t)
+        left = right = 0
+        while right < l:
+            if findout[s[right]] > 0:
+                counter -= 1
+            findout[s[right]] -= 1
+            right += 1
+            while counter == 0:
+                if min_len > right - left:
+                    min_len = right - left
+                    res = s[left:right]
+                if findout[s[left]] == 0:
+                    counter += 1
+                findout[s[left]] += 1
+                left += 1
+        return res
 
-        minL, minR = 0, float('inf')
-
-        l = 0
-        for r, c in enumerate(s):
-            if mem[c] > 0:
-                t_len -= 1
-            mem[c] -= 1
-
-            if t_len == 0:
-                while mem[s[l]] < 0:
-                    mem[s[l]] += 1
-                    l += 1
-
-                if r - l < minR - minL:
-                    minL, minR = l, r
-
-                mem[s[l]] += 1
-                t_len += 1
-                l += 1
-
-        return "" if minR == float('inf') else s[minL:minR + 1]
 
 
 if __name__ == '__main__':
