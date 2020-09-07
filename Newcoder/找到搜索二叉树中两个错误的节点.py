@@ -4,6 +4,7 @@ class TreeNode:
         self.left = None
         self.right = None
 
+
 #
 #
 # @param root TreeNode¿‡ the root
@@ -13,7 +14,7 @@ class Solution:
     def __init__(self):
         self.res = []
 
-    def findError(self , root ):
+    def findError(self, root):
         # write code here
         if not root:
             return self.res
