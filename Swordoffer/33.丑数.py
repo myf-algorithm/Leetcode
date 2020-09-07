@@ -28,6 +28,26 @@ class Solution:
         return baselist[-1]
 
 
+# -*- coding:utf-8 -*-
+class Solution1:
+    def GetUglyNumber_Solution(self, index):
+        # write code here
+        if index == 0:
+            return 0
+        dp = [1]
+        min2 = min3 = min5 = 0
+        while len(dp) < index:
+            minnum = min(dp[min2] * 2, dp[min3] * 3, dp[min5] * 5)
+            dp.append(minnum)
+            if dp[min2] * 2 == minnum:
+                min2 += 1
+            if dp[min3] * 3 == minnum:
+                min3 += 1
+            if dp[min5] * 5 == minnum:
+                min5 += 1
+        return dp[-1]
+
+
 if __name__ == '__main__':
     S = Solution()
     print(S.GetUglyNumber_Solution(25))
