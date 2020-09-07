@@ -26,3 +26,22 @@ class Solution(object):
             else:
                 l = m + 1
         return l - 1
+
+
+class Solution_traverse:
+    def solve(self, a):
+        # write code here
+        n = len(a)
+        if n == 1:
+            return 0
+        for i in range(n - 1, -1, -1):
+            if i == n - 1:
+                if a[i] >= a[i - 1]:
+                    return i
+            elif i == 0:
+                if a[i] >= a[i + 1]:
+                    return i
+            else:
+                if a[i] >= a[i - 1] and a[i] >= a[i + 1]:
+                    return i
+        return -1
