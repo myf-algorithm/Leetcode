@@ -3,6 +3,7 @@ class ListNode:
         self.val = x
         self.next = None
 
+
 #
 #
 # @param head ListNode¿‡
@@ -10,14 +11,14 @@ class ListNode:
 # @return ListNode¿‡
 #
 class Solution:
-    def partition(self , head , x ):
+    def partition(self, head, x):
         # write code here
         if not head or not head.next:
             return head
         head1 = ListNode(0)
         cur1 = head1
         head2 = ListNode(0)
-        cur2 =head2
+        cur2 = head2
         cur = head
         while cur:
             if cur.val < x:
