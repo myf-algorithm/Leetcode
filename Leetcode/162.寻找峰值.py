@@ -9,7 +9,7 @@ class Solution(object):
         while left < right:
             # 这种写法比 (left+right)//2 求mid的方法好，一些语言这样写可以防止溢出
             mid = left + (right - left) // 2
-            # 如果满足该条件说明山峰可能是在 mid 的右侧，因为各个元素不同，所以if的条件是 >
+            # 如果满足该条件说明山峰可能是在 mid 的右侧，因为各个元素不同，所以if的条件是 <
             if nums[mid] < nums[mid + 1]:
                 left = mid + 1
             else:
