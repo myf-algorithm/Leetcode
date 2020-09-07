@@ -25,6 +25,19 @@ class Solution:
         return abs(self.Treeheight(pRoot.left) - self.Treeheight(pRoot.right)) <= 1
 
 
+class Solution_1:
+    def IsBalanced_Solution(self, pRoot):
+        return self.Hight_tree(pRoot) != -1
+
+    def Hight_tree(self, root):
+        if not root:
+            return 0
+        l = self.Hight_tree(root.left)
+        r = self.Hight_tree(root.right)
+        if abs(l - r) > 1 or l == -1 or r == -1:
+            return -1
+        return max(l, r) + 1
+
 if __name__ == "__main__":
     S = Solution()
     root = TreeNode(1)
