@@ -38,6 +38,7 @@ class Solution_1:
             return -1
         return max(l, r) + 1
 
+
 if __name__ == "__main__":
     S = Solution()
     root = TreeNode(1)
