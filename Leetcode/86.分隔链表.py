@@ -1,3 +1,5 @@
+# coding = utf-8
+
 class ListNode:
     def __init__(self, x):
         self.val = x
@@ -6,9 +8,9 @@ class ListNode:
 
 #
 #
-# @param head ListNodeÀà
-# @param x intÕûĞÍ
-# @return ListNodeÀà
+# @param head ListNodeç±»
+# @param x intæ•´å‹
+# @return ListNodeç±»
 #
 class Solution:
     def partition(self, head, x):
