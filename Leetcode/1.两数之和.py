@@ -8,7 +8,7 @@ class Solution:
     #         j = i + 1
     #         while j < l:
     #             if nums[i] + nums[j] == target:
-    #                 result = [i,                                                                                                                                                                                                                                                                                                              j]
+    #                 result = [i, j]
     #             j = j + 1
     #         i = i + 1
     #     return result
