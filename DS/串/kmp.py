@@ -40,5 +40,5 @@ def KMP(s, p):
 if __name__ == '__main__':
     # 测试
     s = 'ababababca'
-    p = 'abababca'
+    p = 'aba'
     print(KMP(s, p))
