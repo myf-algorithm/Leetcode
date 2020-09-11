@@ -43,17 +43,17 @@ class Solution_Stack(object):
 
 class Solution1:
     def longestValidParentheses(self, s):
-        if not s:
-            return 0
-        stack = [-1]
         res = 0
+        stack = []
+        prev = 0
         for i in range(len(s)):
             if s[i] == '(':
-                stack.append(i)
+                stack.append(i - prev)
+                prev = 0
             else:
-                stack.pop()
-                if not stack:
-                    stack.append(i)
+                if len(stack) > 0:
+                    prev = i - stack.pop() + 1
+                    res = max(res, prev)
                 else:
-                    res = max(res, i - stack[-1])
+                    prev = 0
         return res
