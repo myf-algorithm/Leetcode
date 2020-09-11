@@ -29,6 +29,23 @@ class Solution:
         return max_l
 
 
+class Solution2:
+    def maxLength(self, arr):
+        # write code here
+        if not arr:
+            return 0
+        max_len = 1
+        start = 0
+        dic = {}
+
+        for i in range(len(arr)):
+            if arr[i] in dic and dic[arr[i]] >= start:
+                start = dic[arr[i]] + 1
+            dic[arr[i]] = i
+            max_len = max(max_len, i - start + 1)
+        return max_len
+
+
 if __name__ == '__main__':
     s = Solution()
     string = "pwwkew"
