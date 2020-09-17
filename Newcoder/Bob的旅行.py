@@ -1,4 +1,5 @@
 # encoding:utf-8
+# 9.17依图笔试1
 import sys
 
 # N个星球
