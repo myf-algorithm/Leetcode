@@ -37,21 +37,43 @@
 import sys
 
 T = int(input())
-res = []
+for i in range(T):
+    n, m = list(map(int, input().split()))
+    l = []
+    for i in range(n):
+        l.append(list(input()))
 
-
-def caculate(map_in):
-    return -1
-
-
-for _ in range(T):
-    lines = sys.stdin.readline().strip()
-    N, M = list(map(int, lines.split()))
-    map_in = []
-    for i in range(N):
-        lines = sys.stdin.readline().strip()
-        map_in.append(list(map(str, lines.split())))
-    res.append(caculate(map_in))
-
-for i in res:
-    print(i)
+for i in range(n):
+    for j in range(m):
+        if l[i][j] == '@':
+            stack = [(i, j)]
+            visited = {(i, j)}
+            break
+result = 0
+ready = []
+flag = False
+while stack:
+    temp = []
+    for ni, nj in stack:
+        if ni == 0 or ni == n - 1 or nj == 0 or nj == m - 1:
+            flag = True
+            break
+        for ne_i, ne_j in [[ni + 1, nj], [ni - 1, nj], [ni, nj + 1], [ni, nj - 1]]:
+            if (ne_i, ne_j) not in visited:
+                if l[ne_i][ne_j] == '.':
+                    temp.append((ne_i, ne_j))
+                elif l[ne_i][ne_j] == '*':
+                    ready.append((ne_i, ne_j))
+                visited.add((ne_i, ne_j))
+    if flag:
+        break
+    if not temp and not ready:
+        result = -1
+        break
+    elif not temp:
+        stack = ready[:]
+        result += 1
+        ready = []
+    else:
+        stack = temp[:]
+print(result)
