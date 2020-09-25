@@ -27,17 +27,14 @@ class Solution:
                 dif_cnt += 1
 
         if same_cnt >= k:
-            max_cnt = k
+            max_cnt = k + dif_cnt
         else:
-            max_cnt = same_cnt + dif_cnt - (k - same_cnt)
+            max_cnt = n - (k - same_cnt)
 
-        if dif_cnt >= k:
-            min_cnt = 0
+        if k > dif_cnt:
+            min_cnt = k - dif_cnt
         else:
-            min_cnt = same_cnt - (k - dif_cnt)
+            min_cnt = 0
+
         res = Interval(min_cnt, max_cnt)
         return res
-
-
-S = Solution()
-print(S.solve(3, 1, "ABC", "DDD").start, S.solve(3, 1, "ABC", "DDD").end)
