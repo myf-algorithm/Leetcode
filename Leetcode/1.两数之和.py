@@ -62,5 +62,3 @@ S = Solution()  # 实例化对象
 print(S.twoSum(nums, target))
 for i, num in enumerate(nums):
     print(str(i) + ' ' + str(num))
-
-
