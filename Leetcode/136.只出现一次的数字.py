@@ -21,6 +21,8 @@ class Solution(object):
             res = res ^ nums[i]
         return res
 
+
+
 if __name__ == '__main__':
     S = Solution()
     a = [2, 2, 1]
