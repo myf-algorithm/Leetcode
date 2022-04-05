@@ -15,6 +15,11 @@ class Solution(object):
     def singleNumber_math(self, nums):
         return 2 * sum(set(nums)) - sum(nums)
 
+    def singleNumber_bit(self, nums: List[int]) -> int:
+        res = 0
+        for i in range(len(nums)):
+            res = res ^ nums[i]
+        return res
 
 if __name__ == '__main__':
     S = Solution()
