@@ -22,7 +22,6 @@ class Solution(object):
         return res
 
 
-
 if __name__ == '__main__':
     S = Solution()
     a = [2, 2, 1]
