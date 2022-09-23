@@ -19,6 +19,7 @@ class Solution(object):
         return res
 
 
+
 class Solution_Stack(object):
     def longestValidParentheses(self, s):
         """
