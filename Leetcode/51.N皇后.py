@@ -3,24 +3,24 @@ from typing import List
 
 class Solution:
     def solveNQueens(self, n: int) -> List[List[str]]:
-        board = [['.'] * n for _ in range(n)]  # ³õÊ¼»¯¶þÎ¬ÆåÅÌ
+        board = [['.'] * n for _ in range(n)]  # åˆå§‹åŒ–äºŒç»´æ£‹ç›˜
         res = []
 
         def backtrack(board, row):
-            #     if Âú×ãÌõ¼þ:
-            #         res.append(Â·¾¶)
+            #     if æ»¡è¶³æ¡ä»¶:
+            #         res.append(è·¯å¾„)
             #         return
             if row == len(board):
-                tmp_list = []  # ¶þÎ¬±äÒ»Î¬Ìí¼Óµ½resÖÐ
+                tmp_list = []  # äºŒç»´å˜ä¸€ç»´æ·»åŠ åˆ°resä¸­
                 for e_row in board:
                     tmp = ''.join(e_row)
                     tmp_list.append(tmp)
                 res.append(tmp_list)
                 return
-            #     for Ñ¡Ôñ in Ñ¡ÔñÁÐ±í:
-            #         ×öÑ¡Ôñ
-            #         backtrack(Â·¾¶,Ñ¡ÔñÁÐ±í)
-            #         ³·ÏúÑ¡Ôñ
+            #     for é€‰æ‹© in é€‰æ‹©åˆ—è¡¨:
+            #         åšé€‰æ‹©
+            #         backtrack(è·¯å¾„,é€‰æ‹©åˆ—è¡¨)
+            #         æ’¤é”€é€‰æ‹©
             for col in range(len(board[0])):
                 if not isValid(board, row, col):
                     # print(isValid(board,row,col))
@@ -32,18 +32,18 @@ class Solution:
 
         def isValid(board, row, col):
             n = len(board)
-            # ¼ì²éÁÐÊÇ·ñÓÐ»Êºó»¥Ïà³åÍ»
+            # æ£€æŸ¥åˆ—æ˜¯å¦æœ‰çš‡åŽäº’ç›¸å†²çª
             for i in range(n):
                 if board[i][col] == 'Q':
                     return False
-            # ¼ì²éÓÒÉÏ·½ÊÇ·ñÓÐ»Êºó»¥Ïà³åÍ»
+            # æ£€æŸ¥å³ä¸Šæ–¹æ˜¯å¦æœ‰çš‡åŽäº’ç›¸å†²çª
             r_row, r_col = row, col
             while r_row > 0 and r_col < n - 1:
                 r_row -= 1
                 r_col += 1
                 if board[r_row][r_col] == 'Q':
                     return False
-            # ¼ì²é×óÉÏ·½ÊÇ·ñÓÐ»Êºó»¥Ïà³åÍ»
+            # æ£€æŸ¥å·¦ä¸Šæ–¹æ˜¯å¦æœ‰çš‡åŽäº’ç›¸å†²çª
             l_row, l_col = row, col
             while l_row > 0 and l_col > 0:
                 l_row -= 1
@@ -58,13 +58,13 @@ class Solution:
 
 class Solution1:
     def solveNQueens(self, n: int) -> List[List[str]]:
-        # °´ÐÐÃ¶¾Ù
+        # æŒ‰è¡Œæžšä¸¾
         col, diag, reverse_diag = [0] * n, [0] * 2 * n, [0] * 2 * n
         ret = []
         grid = [['.'] * n for _ in range(n)]
 
         def dfs(u: int):
-            # ÖÕµã·µ»Ø
+            # ç»ˆç‚¹è¿”å›ž
             if u == n:
                 ret.append(["".join(grid[i]) for i in range(n)])
                 return
