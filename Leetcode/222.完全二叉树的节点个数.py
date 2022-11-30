@@ -6,8 +6,6 @@ class TreeNode:
         self.right = None
 
 
-# 直接递归计算二叉树的所有节点数量
-# 时间复杂度为：O(n)
 class Solution:
     def countNodes(self, root: TreeNode) -> int:
         if root == None:
@@ -17,7 +15,6 @@ class Solution:
         return self.countNodes(root.left) + self.countNodes(root.right) + 1
 
 
-# 时间复杂度为：O(log(n)^2)
 class Solution1:
     def countNodes(self, root: TreeNode) -> int:
         if not root: return 0
