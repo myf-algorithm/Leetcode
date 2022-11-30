@@ -59,6 +59,30 @@ def quick_sort_simple(nums):
     return left + [nums[0]] + right
 
 
+def partition(array, left, right):
+    tmp = array[left]
+    while left < right:
+        while left < right and array[right] >= tmp:
+            right -= 1
+        array[left] = array[right]
+        while left < right and array[left] <= tmp:
+            left += 1
+        array[right] = array[left]
+    array[left] = tmp
+    return left
+
+
+def quick_sort_self(array, left, right):
+    if left < right:
+        mid = partition(array, left, right)
+        quick_sort(array, left, mid - 1)
+        quick_sort(array, mid + 1, right)
+
+
+a = [30, 40, 60, 10, 20, 50]
+quick_sort(a, 0, len(a) - 1)
+print(a)
+
 if __name__ == "__main__":
     li = [54, 26, 93, 17, 77, 31, 44, 55, 20]
     print(li)
