@@ -1,90 +1,54 @@
 class dlNode:
     def __init__(self, key, val, cnt=0):
-        self.val = [key, val, cnt]  # 键、值、访问次数
+        self.val = [key, val, cnt]
         self.pre = None
         self.nxt = None
 
 
 class LFUCache:
     def __init__(self, capacity: int):
-        self.cache = {}  # 通过key保存链表节点，key:node
-        self.c = capacity  # 字典容量
-        self.head = dlNode(1, 1, float('inf'))  # 头节点，定义访问次数正无穷
-        self.tail = dlNode(-1, -1, float('-inf'))  # 尾节点，定义访问次数负无穷
+        self.cache = {}
+        self.c = capacity
+        self.head = dlNode(1, 1, float('inf'))
+        self.tail = dlNode(-1, -1, float('-inf'))
         self.head.nxt = self.tail
         self.tail.pre = self.head
 
-    def _refresh(self, node, cnt):  ##辅助函数，对节点node，以访问次数cnt重新定义其位置
-        pNode, nNode = node.pre, node.nxt  # 当前节点的前后节点
-        if cnt < pNode.val[2]:  # 如果访问次数小于前节点的访问次数，无需更新位置
+    def _refresh(self, node, cnt):
+        pNode, nNode = node.pre, node.nxt
+        if cnt < pNode.val[2]:
             return
-        pNode.nxt, nNode.pre = nNode, pNode  # 将前后连起来，跳过node位置
-        while cnt >= pNode.val[2]:  # 前移到尽可能靠前的位置后插入
+        pNode.nxt, nNode.pre = nNode, pNode
+        while cnt >= pNode.val[2]:
             pNode = pNode.pre
         nNode = pNode.nxt
         pNode.nxt = nNode.pre = node
         node.pre, node.nxt = pNode, nNode
 
     def get(self, key: int) -> int:
-        if self.c <= 0 or key not in self.cache:  # 如果容量<=0或者key不在字典中，直接返回-1
+        if self.c <= 0 or key not in self.cache:
             return -1
-        node = self.cache[key]  # 通过字典找到节点
-        _, value, cnt = node.val  # 通过节点得到key，value和cnt
-        node.val[2] = cnt + 1  # 访问次数+1
-        self._refresh(node, cnt + 1)  # 刷新位置
+        node = self.cache[key]
+        _, value, cnt = node.val
+        node.val[2] = cnt + 1
+        self._refresh(node, cnt + 1)
         return value
 
     def put(self, key: int, value: int) -> None:
-        if self.c <= 0:  # 缓存容量<=0
+        if self.c <= 0:
             return
-        if key in self.cache:  # 已在字典中，则要更新其value，同时访问次数+1刷新位置
+        if key in self.cache:
             node = self.cache[key]
             _, _, cnt = node.val
-            node.val = [key, value, cnt + 1]  # 更新其值
+            node.val = [key, value, cnt + 1]
             self._refresh(node, cnt + 1)
         else:
-            if len(self.cache) >= self.c:  # 容量已满，先清除掉尾部元素
+            if len(self.cache) >= self.c:
                 tp, tpp = self.tail.pre, self.tail.pre.pre
-                self.cache.pop(tp.val[0])  # 从字典剔除尾节点
-                tpp.nxt, self.tail.pre = self.tail, tpp  # 首尾相连，跳过原尾节点
-            node = dlNode(key, value)  # 新建节点，并插入到队尾，再刷新其位置
+                self.cache.pop(tp.val[0])
+                tpp.nxt, self.tail.pre = self.tail, tpp
+            node = dlNode(key, value)
             node.pre, node.nxt = self.tail.pre, self.tail
             self.tail.pre.nxt, self.tail.pre = node, node
             self.cache[key] = node
             self._refresh(node, 0)
-
-
-class Solution:
-    def LFU(self, operators, k):
-        lfu_t = [[] for i in range(100)]
-        dic = {}
-        res = []
-        for ops in operators:
-            opt = ops[0]
-            if opt == 1:
-                if ops[1] not in dic:
-                    dic[ops[1]] = []
-                    dic[ops[1]].append(ops[2])
-                    dic[ops[1]].append(1)
-                    lfu_t[1].append(ops[1])
-                else:
-                    dic[ops[1]][0] = ops[2]
-                    lfu_t[dic[ops[1]][1]].remove(ops[1])
-                    dic[ops[1]][1] += 1
-                    lfu_t[dic[ops[1]][1]].append(ops[1])
-                if len(dic) > k:
-                    for key in lfu_t:
-                        if len(key) > 0:
-                            key_key = key.pop(0)
-                            dic.pop(key_key)
-                            break
-            elif opt == 2:
-                if ops[1] not in dic:
-                    val = -1
-                else:
-                    val = dic[ops[1]][0]
-                    lfu_t[dic[ops[1]][1]].remove(ops[1])
-                    dic[ops[1]][1] += 1
-                    lfu_t[dic[ops[1]][1]].append(ops[1])
-                res.append(val)
-        return res

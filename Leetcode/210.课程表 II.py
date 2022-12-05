@@ -23,4 +23,4 @@ class Solution(object):
                 indegrees[cur] -= 1  # 将这个节点的入度减1
                 if not indegrees[cur]:  # cur的所有的前驱节点已经被删除，cur入队
                     queue.append(cur)
-        return res if not numCourses else [] # 拓扑排序出队次数等于课程个数，课程安排图是否是有向无环图(DAG)，课程可以成功安排
+        return res if not numCourses else []  # 拓扑排序出队次数等于课程个数，课程安排图是否是有向无环图(DAG)，课程可以成功安排
