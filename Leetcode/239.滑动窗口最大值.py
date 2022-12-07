@@ -56,11 +56,11 @@ class Solution_deque:
 
         ans = [nums[q[0]]]
         for i in range(k, n):
-            while q and nums[i] >= nums[q[-1]]:
-                q.pop()
+            while q and nums[i] >= nums[q[-1]]:  # 将新的元素与队尾的元素相比较
+                q.pop()  # 队尾的元素就可以被永久地移除
             q.append(i)
             while q[0] <= i - k:
-                q.popleft()
-            ans.append(nums[q[0]])
+                q.popleft()  # 从队首弹出元素，直到队首元素在窗口中为止
+            ans.append(nums[q[0]])  # 由于队列中下标对应的元素是严格单调递减的，因此此时队首下标对应的元素就是滑动窗口中的最大值
 
         return ans
