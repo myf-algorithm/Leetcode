@@ -1,52 +1,25 @@
 import heapq
 
 
-class MedianFinder(object):
+class MedianFinder:
     def __init__(self):
-        """
-        initialize your data structure here.
-        """
-        self.max_heap = []
-        self.min_heap = []
-
-    def addNum(self, num):
-        """
-        :type num: int
-        :rtype: None
-        """
-        if len(self.max_heap) == len(self.min_heap):
-            heapq.heappush(self.min_heap, -heapq.heappushpop(self.max_heap, -num))
-        else:
-            heapq.heappush(self.max_heap, -heapq.heappushpop(self.min_heap, num))
-
-    def findMedian(self):
-        """
-        :rtype: float
-        """
-        if len(self.max_heap) == len(self.min_heap):
-            return (self.min_heap[0] - self.max_heap[0]) / 2
-        else:
-            return self.min_heap[0]
-
-
-import bisect
-
-
-class MedianFinder1:
-    def __init__(self):
-        """
-        initialize your data structure here.
-        """
-
-        self.data = []
+        self.minheap = []
+        self.maxheap = []
 
     def addNum(self, num: int) -> None:
-        bisect.insort_left(self.data, num)
+        if not self.minheap or num <= -self.minheap[0]:  # 如果之前为空或者当前要进来的元素比minheap最大的元素还小
+            heapq.heappush(self.minheap, -num)
+            if len(self.minheap) > len(self.maxheap) + 1:  # 如果minheap队列比另一个长度大1以上，则应该把一个元素拿出来放到另一个队列中
+                heapq.heappush(self.maxheap, -heapq.heappop(self.minheap))
+        else:
+            heapq.heappush(self.maxheap, num)
+            if len(self.maxheap) > len(self.minheap) + 1:  # # 如果maxheap队列比另一个长度大1以上，则应该把一个元素拿出来放到另一个队列中
+                heapq.heappush(self.minheap, -heapq.heappop(self.maxheap))
 
     def findMedian(self) -> float:
-        n = len(self.data)
-        mid = (n - 1) // 2
-        if n % 2 == 1:
-            return self.data[mid]
+        if len(self.minheap) == len(self.maxheap):
+            return (-self.minheap[0] + self.maxheap[0]) / 2
+        elif len(self.minheap) > len(self.maxheap):
+            return -self.minheap[0]
         else:
-            return (self.data[mid] + self.data[mid + 1]) / 2
+            return self.maxheap[0]
