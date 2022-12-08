@@ -8,6 +8,19 @@
 #                   当缓存容量达到上限时，它应该在写入新数据之前删除最久未使用的数据值，
 #                   从而为新的数据值留出空间。
 
+# 数据结构：
+# 双向链表按照被使用的顺序存储了这些键值对，靠近头部的键值对是最近使用的，而靠近尾部的键值对是最久未使用的
+# 哈希表即为普通的哈希映射（HashMap），通过缓存数据的键映射到其在双向链表中的位置
+
+# 算法逻辑：
+# 对于 get 操作，首先判断 key 是否存在：
+# 如果 key 不存在，则返回 −1；
+# 如果 key 存在，则 key 对应的节点是最近被使用的节点。通过哈希表定位到该节点在双向链表中的位置，并将其移动到双向链表的头部，最后返回该节点的值。
+
+# 对于 put 操作，首先判断 key 是否存在：
+# 如果 key 不存在，使用 key 和 value 创建一个新的节点，在双向链表的头部添加该节点，并将 key 和该节点添加进哈希表中。然后判断双向链表的节点数是否超出容量，如果超出容量，则删除双向链表的尾部节点，并删除哈希表中对应的项；
+# 如果 key 存在，则与 get 操作类似，先通过哈希表定位，再将对应的节点的值更新为 value，并将该节点移到双向链表的头部。
+
 
 class ListNode:
     def __init__(self, key=None, value=None):
@@ -93,6 +106,28 @@ class LRUCache(object):
             new.next = self.tail
             self.tail.prev.next = new
             self.tail.prev = new
+
+
+import collections
+
+
+class LRUCache_easy(collections.OrderedDict):
+    def __init__(self, capacity: int):
+        super().__init__()
+        self.capacity = capacity
+
+    def get(self, key: int) -> int:
+        if key not in self:
+            return -1
+        self.move_to_end(key)
+        return self[key]
+
+    def put(self, key: int, value: int) -> None:
+        if key in self:
+            self.move_to_end(key)
+        self[key] = value
+        if len(self) > self.capacity:
+            self.popitem(last=False)
 
 
 # Your LRUCache object will be instantiated and called as such:

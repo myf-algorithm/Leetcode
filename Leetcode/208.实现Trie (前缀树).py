@@ -1,58 +1,33 @@
-class Trie(object):
-
+class TrieNode:
     def __init__(self):
-        """
-        Initialize your data structure here.
-        前缀树，又称字典树
-        """
-        self.lookup = {}
-
-    def insert(self, word):
-        """
-        Inserts a word into the trie.
-        :type word: str
-        :rtype: None
-        """
-        tree = self.lookup
-        for a in word:
-            if a not in tree:
-                tree[a] = {}
-            tree = tree[a]
-        # 单词结束标志
-        tree['#'] = '#'
+        self.children = {}
+        self.isWord = False
 
 
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
 
-    def search(self, word):
-        """
-        Returns if the word is in the trie.
-        :type word: str
-        :rtype: bool
-        """
-        tree = self.lookup
-        for a in word:
-            if a not in tree:
+    def insert(self, word: str) -> None:
+        node = self.root
+        for c in word:
+            if c not in node.children:
+                node.children[c] = TrieNode()
+            node = node.children[c]
+        node.isWord = True
+
+    def search(self, word: str) -> bool:
+        node = self.root
+        for c in word:
+            if c not in node.children:
                 return False
-            tree = tree[a]
-        if '#' in tree:
-            return True
-        return False
+            node = node.children[c]
+        return node.isWord
 
-    def startsWith(self, prefix):
-        """
-        Returns if there is any word in the trie that starts with the given prefix.
-        :type prefix: str
-        :rtype: bool
-        """
-        tree = self.lookup
-        for a in prefix:
-            if a not in tree:
+    def startsWith(self, prefix: str) -> bool:
+        node = self.root
+        for c in prefix:
+            if c not in node.children:
                 return False
-            tree = tree[a]
+            node = node.children[c]
         return True
-
-# Your Trie object will be instantiated and called as such:
-# obj = Trie()
-# obj.insert(word)
-# param_2 = obj.search(word)
-# param_3 = obj.startsWith(prefix)
