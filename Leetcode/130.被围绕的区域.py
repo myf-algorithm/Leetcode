@@ -1,6 +1,9 @@
 from typing import List
 
 
+from typing import List
+
+
 class UnionFind(object):
     def __init__(self, n: int):
         self._count = n
@@ -38,6 +41,50 @@ class UnionFind(object):
 
     def get_count(self):
         return self._count
+
+
+DIRECTIONS = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+
+
+class Solution_UF:
+    def solve(self, board: List[List[str]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        if len(board) == 0:
+            return
+        m, n = len(board), len(board[0])
+        uf = UnionFind(m * n + 1)
+        dummy = m * n
+        # 遍历第一列和最后一列元素，将为O的元素与dummy相连
+        for i in range(m):
+            if board[i][0] == "O":
+                uf.union(i * n, dummy)
+            if board[i][n - 1] == "O":
+                uf.union(i * n + n - 1, dummy)
+        # 遍历第一行和最后一行元素，将为O的元素与dummy相连
+        for j in range(n):
+            if board[0][j] == "O":
+                uf.union(j, dummy)
+            if board[m - 1][j] == "O":
+                uf.union((m - 1) * n + j, dummy)
+
+        for i in range(1, m - 1):
+            for j in range(1, n - 1):
+                # 如果当前元素是O
+                if board[i][j] == "O":
+                    # 将它四周是O的元素连通
+                    for direction in DIRECTIONS:
+                        x, y = direction[0] + i, direction[1] + j
+                        if board[x][y] == "O":
+                            uf.union(x * n + y, i * n + j)
+
+        for i in range(m):
+            for j in range(n):
+                # 如果它和dummy不是连通的，就置为X
+                if not uf.connected(i * n + j, dummy):
+                    board[i][j] = "X"
+        return board
 
 
 class Solution(object):
