@@ -6,25 +6,26 @@ class ListNode:
 
 
 class Solution:
-    def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:
-        if m == n:
+    def reverseBetween(self, head, left: int, right: int):
+        if left == right:
             return head
         dummy = ListNode(0)
         dummy.next = head
         a, d = dummy, dummy
-        for _ in range(m - 1):
+        for _ in range(left - 1):
             a = a.next
-        for _ in range(n):
+        for _ in range(right):
             d = d.next
         b, c = a.next, d.next
+
         # o o o a b o o d c o o
         pre = b
         cur = pre.next
         while cur != c:
-            next = cur.next
+            tmp = cur.next
             cur.next = pre
             pre = cur
-            cur = next
+            cur = tmp
         a.next = d
         b.next = c
         return dummy.next
