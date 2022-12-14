@@ -32,16 +32,16 @@ class Solution(object):
     def levelOrder_r(self, root):
         res = []
 
-        def helper(root, depth):
+        def traverse(root, depth):
             if not root:
                 return
             if len(res) == depth:
                 res.append([])
             res[depth].append(root.val)
-            helper(root.left, depth + 1)
-            helper(root.right, depth + 1)
+            traverse(root.left, depth + 1)
+            traverse(root.right, depth + 1)
 
-        helper(root, 0)
+        traverse(root, 0)
         return res
 
 

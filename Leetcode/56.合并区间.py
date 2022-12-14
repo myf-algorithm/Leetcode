@@ -7,7 +7,7 @@ class Solution(object):
         while i < n:
             left = intervals[i][0]
             right = intervals[i][1]
-            while i < n - 1 and intervals[i + 1][0] <= right:
+            while i < n - 1 and intervals[i + 1][0] <= right:  # 相邻区间存在重叠
                 i += 1
                 right = max(intervals[i][1], right)
             res.append([left, right])
