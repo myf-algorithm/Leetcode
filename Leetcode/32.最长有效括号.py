@@ -1,9 +1,5 @@
 class Solution(object):
-    def longestValidParentheses(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
+    def longestValidParentheses_dp(self, s):
         if not s:
             return 0
         res = 0
@@ -18,14 +14,7 @@ class Solution(object):
                 res = max(res, dp[i])
         return res
 
-
-
-class Solution_Stack(object):
-    def longestValidParentheses(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
+    def longestValidParentheses_stack(self, s):
         if not s:
             return 0
         res = 0
@@ -34,27 +23,9 @@ class Solution_Stack(object):
             if s[i] == "(":
                 stack.append(i)
             else:
-                stack.pop()
+                stack.pop()  # 遇到')'，先出栈
                 if not stack:
                     stack.append(i)
                 else:
                     res = max(res, i - stack[-1])
-        return res
-
-
-class Solution1:
-    def longestValidParentheses(self, s):
-        res = 0
-        stack = []
-        prev = 0
-        for i in range(len(s)):
-            if s[i] == '(':
-                stack.append(i - prev)
-                prev = 0
-            else:
-                if len(stack) > 0:
-                    prev = i - stack.pop() + 1
-                    res = max(res, prev)
-                else:
-                    prev = 0
         return res
