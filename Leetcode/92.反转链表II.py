@@ -21,10 +21,10 @@ class Solution:
         pre = b
         cur = pre.next
         while cur != c:
-            next = cur.next  # 保存next位置
-            cur.next = pre  # 反转
-            pre = cur  # 更新pre
-            cur = next  # 更新cur
-        a.next = d  # 连接头
-        b.next = c  # 连接尾
+            next = cur.next
+            cur.next = pre
+            pre = cur
+            cur = next
+        a.next = d
+        b.next = c
         return dummy.next

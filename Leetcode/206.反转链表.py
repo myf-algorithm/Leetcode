@@ -13,13 +13,15 @@ class Solution(object):
         """
         if head == None or head.next == None:
             return head
-        new_head = None
-        while head:
-            tmp = head.next
-            head.next = new_head
-            new_head = head
-            head = tmp
-        return new_head
+
+        pre = None
+        cur = head
+        while cur:
+            tmp = cur.next
+            cur.next = pre
+            pre = cur
+            cur = tmp
+        return pre
 
     def reverseList_r(self, head):
         """
