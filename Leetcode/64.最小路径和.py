@@ -1,9 +1,5 @@
 class Solution(object):
     def minPathSum(self, grid):
-        """
-        :type grid: List[List[int]]
-        :rtype: int
-        """
         for i in range(len(grid)):
             for j in range(len(grid[0])):
                 if i == j == 0:
