@@ -1,24 +1,23 @@
 class Solution(object):
     def coinChange_dp(self, coins, amount):
-        """
-        :type coins: List[int]
-        :type amount: int
-        :rtype: int
-        dp[i]表示金额为i需要最少的硬币
-        dp[i] = min(dp[i], dp[i - coin[j]])
-        """
+        if amount == 0:
+            return 0
+        if amount < 0:
+            return -1
+
+        # 当目标金额为 i 时，至少需要 dp[i] 枚硬币凑出
         dp = [float('inf')] * (amount + 1)
         dp[0] = 0
+
         for i in range(1, amount + 1):
-            dp[i] = min(dp[i - c] if i - c >= 0 else float('inf') for c in coins) + 1
+            for c in coins:
+                if i - c >= 0:
+                    dp[i] = min(dp[i], dp[i - c] + 1)  # 1表示枚举的这枚硬币本身
+                else:
+                    continue
         return dp[-1] if dp[-1] != float('inf') else -1
 
     def coinChange_bfs(self, coins, amount):
-        """
-        :type coins: List[int]
-        :type amount: int
-        :rtype: int
-        """
         from collections import deque
         queue = deque([amount])
         step = 0
@@ -37,11 +36,6 @@ class Solution(object):
         return -1
 
     def coinChange_dfs(self, coins, amount):
-        """
-        :type coins: List[int]
-        :type amount: int
-        :rtype: int
-        """
         coins.sort(reverse=True)
         self.res = float('inf')
 
