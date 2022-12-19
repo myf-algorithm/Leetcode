@@ -15,6 +15,7 @@ class Solution:
 
         return dp[n][amount]
 
+
 class Solution:
     def change(self, amount: int, coins: List[int]) -> int:
         n = len(coins)
