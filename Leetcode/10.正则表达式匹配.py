@@ -1,34 +1,24 @@
-import math
-
-
-# 点号可以匹配任意一个字符
-# 星号通配符可以让前一个字符重复任意次数，包括零次。
 class Solution:
     def isMatch(self, s: str, p: str) -> bool:
-        if not p: return not s
-        first_match = bool(s) and p[0] in {s[0], '.'}
-        if len(p) >= 2 and p[1] == '*':
-            return self.isMatch(s, p[2:]) or first_match and self.isMatch(s[1:], p)
-        return first_match and self.isMatch(s[1:], p[1:])
+        m, n = len(s), len(p)
+        # dp[i][j]表示p的前i个字符和s的前j个字符是否匹配
+        dp = [[False] * (n + 1) for _ in range(m + 1)]
 
-    def isMatch_DP(self, s: str, p: str) -> bool:
-        def dp(i, j):
-            memo = dict()  # 备忘录
-            if (i, j) in memo: return memo[(i, j)]
-            if j == len(p): return i == len(s)
-            first = i < len(s) and p[j] in {s[i], '.'}
-            if j <= len(p) - 2 and p[j + 1] == '*':
-                ans = dp(i, j + 2) or first and dp(i + 1, j)
-            else:
-                ans = first and dp(i + 1, j + 1)
-            memo[(i, j)] = ans
-            return ans
+        # 初始化
+        dp[0][0] = True
+        for j in range(1, n + 1):
+            if p[j - 1] == '*':
+                dp[0][j] = dp[0][j - 2]
 
-        return dp(0, 0)
+        # 状态更新
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if s[i - 1] == p[j - 1] or p[j - 1] == '.':
+                    dp[i][j] = dp[i - 1][j - 1]
+                elif p[j - 1] == '*':  # 【题目保证'*'号不会是第一个字符，所以此处有j>=2】
+                    if s[i - 1] != p[j - 2] and p[j - 2] != '.':
+                        dp[i][j] = dp[i][j - 2]
+                    else:
+                        dp[i][j] = dp[i][j - 2] | dp[i - 1][j]
 
-
-if __name__ == '__main__':
-    S = Solution()
-    s = "aa"
-    p = "a*"
-    print(S.isMatch_DP(s, p))
+        return dp[m][n]
