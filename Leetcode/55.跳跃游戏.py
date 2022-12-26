@@ -1,10 +1,5 @@
 class Solution(object):
     def canJump(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: bool
-        贪心算法
-        """
         # 当前位置的下标
         start = 0
         # 从当前位置到达的最远位置
