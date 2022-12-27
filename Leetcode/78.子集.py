@@ -35,16 +35,5 @@ class Solution:
         return res
 
 
-class Solution1:
-    def subsets(self, A):
-        # write code here
-        ret = [[]]
-        for i in A:
-            m = len(ret)
-            for j in range(m):
-                ret.append(ret[j] + [i])
-        return ret
-
-
 S = Solution1()
 S.subsets([1, 2, 3])

@@ -148,40 +148,6 @@ class Solution(object):
         return uf.get_count() - 1
 
 
-# 判断岛屿数量
-# @param grid char字符型二维数组
-# @return int整型
-class Solution_newcoder:
-    def solve(self, grid):
-        # write code here
-        m = len(grid)
-        if m == 0:
-            return 0
-        n = len(grid[0])
-        offset = [[-1, 0], [0, -1], [0, 1], [1, 0]]
-
-        def dfs(x, y):
-            s = []
-            s.append([x, y])
-
-            grid[x][y] = 0
-            while s:
-                cx, cy = s.pop()
-                for dx, dy in offset:
-                    nx, ny = cx + dx, cy + dy
-                    if 0 <= nx < m and 0 <= ny < n and grid[nx][ny] == '1':
-                        s.append([nx, ny])
-                        grid[nx][ny] = 0
-
-        num = 0
-        for i in range(m):
-            for j in range(n):
-                if grid[i][j] == '1':
-                    dfs(i, j)
-                    num += 1
-        return num
-
-
 if __name__ == '__main__':
     grid = [['1', '1', '1', '1', '0'],
             ['1', '1', '0', '1', '0'],
