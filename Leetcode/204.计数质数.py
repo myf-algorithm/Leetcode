@@ -1,32 +1,28 @@
 class Solution(object):
-    def countPrimes(self, n):
-        """
-        :type n: int
-        :rtype: int
-        """
-        isPrimes = [1] * n
-        res = 0
-        for i in range(2, n):
-            if isPrimes[i] == 1:
-                res += 1
-            j = i
-            while i * j < n:
-                isPrimes[i * j] = 0
+    def countPrimes_naive(self, n: int) -> int:
+        def is_prime(num):
+            j = 2
+            while j * j <= num:
+                if num % j == 0:
+                    return False
                 j += 1
-        return res
+            return True
 
-    def countPrimes_1(self, n: int) -> int:
-        """
-        :type n: int
-        :rtype: int
-        """
-        if n < 2:
-            return 0
-        isPrimes = [1] * n
-        isPrimes[0] = isPrimes[1] = 0
-        # 在 2 到 根号n 的范围内，当一个数是质数，将它所有的比n小的倍数设置成0
-        for i in range(2, int(n ** 0.5) + 1):
-            if isPrimes[i] == 1:
-                isPrimes[i * i: n: i] = [0] * len(isPrimes[i * i: n: i])
-        return sum(isPrimes)
+        count = 0
+        for i in range(2, n):
+            if is_prime(i):
+                count += 1
 
+        return count
+
+    def countPrimes(self, n: int) -> int:
+        is_prime = [1] * n
+
+        count = 0
+        for i in range(2, n):
+            # 将质数的倍数都标记为合数
+            if is_prime[i]:
+                count += 1
+                for j in range(i * i, n, i):
+                    is_prime[j] = 0
+        return count
