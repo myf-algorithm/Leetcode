@@ -1,36 +1,42 @@
 class Solution(object):
     def permute(self, nums):
         res = []
+        path = []
+        used = []
 
-        def backtrack(nums, tmp):
-            if not nums:
-                res.append(tmp)
-                return
-            for i in range(len(nums)):
-                backtrack(nums[:i] + nums[i + 1:], tmp + [nums[i]])
+        def backtrack(nums, used):
+            if len(path) == len(nums):
+                return res.append(path[:])
+            for i in range(0, len(nums)):
+                if nums[i] in used:
+                    continue
+                path.append(nums[i])
+                used.append(nums[i])
+                backtrack(nums, used)
+                used.pop()
+                path.pop()
 
-        backtrack(nums, [])
+        backtrack(nums, used)
         return res
 
     def permute1(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: List[List[int]]
-        插入法
-        """
-        if len(nums) < 2:  # 如果为1个或两个元素直接返回
-            return [nums]
-        # 逐个元素的插入法，每次插入新元素到所有旧排列的所有能插入的位置生成新排列
-        preres = [[nums[0]]]
-        for i in nums[1:]:
-            res = []
-            for temp in preres:
-                for j in range(len(temp) + 1):
-                    res.append(temp[:j] + [i] + temp[j:])
-            preres = res  # 成为旧排列
-        return preres
+        res = []
+        path = []
+
+        def backtrack(nums):
+            if len(path) == len(nums):
+                return res.append(path[:])
+            for i in range(0, len(nums)):
+                if nums[i] in path:
+                    continue
+                path.append(nums[i])
+                backtrack(nums)
+                path.pop()
+
+        backtrack(nums)
+        return res
 
 
 if __name__ == '__main__':
     S = Solution()
-    print(S.permute1([1, 2, 3]))
+    print(S.permute([1, 2, 3]))
