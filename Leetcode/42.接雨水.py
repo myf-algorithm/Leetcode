@@ -1,52 +1,39 @@
-class Solution(object):
-    def trap(self, height):
-        if not height:
-            return 0
+from typing import List
+
+
+class Solution:
+    # 遍历，备忘录
+    def trap1(self, height: List[int]) -> int:
         n = len(height)
-        max_left = [0] * n
-        max_right = [0] * n
-        max_left[0] = height[0]
-        max_right[-1] = height[-1]
+        left_max = [0] * n
+        right_max = [0] * n
+        left_max[0] = height[0]
+        right_max[n - 1] = height[n - 1]
 
-        # 找位置i左边最大值
         for i in range(1, n):
-            max_left[i] = max(height[i], max_left[i - 1])
+            left_max[i] = max(height[i], left_max[i - 1])
+        for i in range(n - 2, 0, -1):
+            right_max[i] = max(height[i], right_max[i + 1])
 
-        # 找位置i右边最大值
-        for i in range(n - 2, -1, -1):
-            max_right[i] = max(height[i], max_right[i + 1])
-
-        # 求结果
         res = 0
-        for i in range(0):
-            res += min(max_left[i], max_right[i] - height[i])
+        for i in range(1, n - 1):
+            res += min(right_max[i], left_max[i]) - height[i]
         return res
 
-    def trap1(self, height):
-        if not height:
-            return 0
+    # 双指针
+    def trap2(self, height: List[int]) -> int:
         left = 0
         right = len(height) - 1
+        left_max = 0
+        right_max = 0
         res = 0
-        # 记录左右边最大值
-        left_max = height[left]
-        right_max = height[right]
         while left < right:
-            if height[left] < height[right]:
-                if left_max > height[left]:
-                    res += left_max - height[left]
-                else:
-                    left_max = height[left]
+            left_max = max(left_max, height[left])
+            right_max = max(right_max, height[right])
+            if left_max < right_max:
+                res += (left_max - height[left])
                 left += 1
             else:
-                if right_max > height[right]:
-                    res += right_max - height[right]
-                else:
-                    right_max = height[right]
+                res += (right_max - height[right])
                 right -= 1
         return res
-
-
-if __name__ == '__main__':
-    S = Solution()
-    print(S.trap([1, 2, 0]))
