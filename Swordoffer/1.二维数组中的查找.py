@@ -9,16 +9,17 @@ class Solution:
     def Find(self, target, array):
         if len(array) == 0 or len(array[0]) == 0:
             return False
-        i = 0   # i代表行
+        i = 0  # i代表行
         j = len(array[0]) - 1  # j代表列
         while i < len(array) and j >= 0:
             if array[i][j] == target:
                 return True
             elif array[i][j] > target:  # 当前位置的数值比目标词大，向左移动
                 j = j - 1
-            else:   # 当前位置的数值比目标词小，向下移动
+            else:  # 当前位置的数值比目标词小，向下移动
                 i = i + 1
         return False
+
 
 class Solution1:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
@@ -38,4 +39,3 @@ class Solution1:
 if __name__ == '__main__':
     S = Solution()
     print(S.Find(3, [[1, 2], [3, 4]]))
-

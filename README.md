@@ -1,8 +1,10 @@
 # Leetcode仓库介绍
 
-Leetcode、Sword Offer题目仓库，知乎专栏：https://zhuanlan.zhihu.com/c_1175819811945476096
+Leetcode、Sword Offer题目仓库
 
+具体题目分类可见：题目整理.csv
 
+知乎专栏：https://zhuanlan.zhihu.com/c_1175819811945476096
 
 ## 1 专题分类
 
@@ -194,13 +196,6 @@ Leetcode、Sword Offer题目仓库，知乎专栏：https://zhuanlan.zhihu.com/c
 | lc.4.寻找两个有序数组的中位数    |      |      |
 | lc.33.搜索旋转排序数组           |      |      |
 | lc.162.寻找峰值                  |      |      |
-
-### 
-
-
-|      |      |      |
-| ---- | ---- | ---- |
-|      |      |      |
 
 ## 2 Leetcode
 
@@ -439,4 +434,4 @@ Leetcode、Sword Offer题目仓库，知乎专栏：https://zhuanlan.zhihu.com/c
 | 66.机器人的运动范围                             |      |      |
 | 67.把数字翻译成字符串                           |      |      |
 
-### 
+###
