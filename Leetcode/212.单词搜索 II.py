@@ -1,74 +1,46 @@
-class Solution(object):
-    def findWords(self, board, words):
-        """
-        :type board: List[List[str]]
-        :type words: List[str]
-        :rtype: List[str]
-        """
-        trie = {}
+from collections import defaultdict
+
+
+class Trie:
+    def __init__(self):
+        self.children = defaultdict(Trie)
+        self.word = ""
+
+    def insert(self, word):
+        cur = self
+        for c in word:
+            cur = cur.children[c]
+        cur.is_word = True
+        cur.word = word
+
+
+class Solution:
+    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+        trie = Trie()
         for word in words:
-            t = trie
-            for w in word:
-                t = t.setdefault(w, {})
-            t["end"] = 1
-        res = []
-        row = len(board)
-        col = len(board[0])
+            trie.insert(word)
 
-        def dfs(i, j, trie, s):
-            c = board[i][j]
-            if c not in trie:
+        def dfs(now, i1, j1):
+            if board[i1][j1] not in now.children:
                 return
-            trie = trie[c]
-            if "end" in trie and trie["end"] == 1:
-                res.append(s + c)
-                trie["end"] = 0  # 防止重复数组加入
-            board[i][j] = "#"
-            for x, y in [[-1, 0], [1, 0], [0, 1], [0, -1]]:
-                tmp_i = x + i
-                tmp_j = y + j
-                if 0 <= tmp_i < row and 0 <= tmp_j < col and board[tmp_i][tmp_j] != "#":
-                    dfs(tmp_i, tmp_j, trie, s + c)
-            board[i][j] = c
 
-        for i in range(row):
-            for j in range(col):
-                dfs(i, j, trie, "")
-        return res
+            ch = board[i1][j1]
 
-    def findWords_bfs(self, board, words):
-        """
-        :type board: List[List[str]]
-        :type words: List[str]
-        :rtype: List[str]
-        """
-        d = {}
-        for s in words:
-            t = d
-            for c in s:
-                if c not in t:
-                    t[c] = {}
-                t = t[c]
-            t['word'] = s
-        ans = []
+            now = now.children[ch]
+            if now.word != "":
+                ans.add(now.word)
 
-        def bfs(i, j):
-            que = [([(i, j)], d[board[i][j]])]
-            tmp_ans = []
-            while que:
-                tmp = []
-                for vst, t in que:
-                    if 'word' in t:
-                        ans.append(t.pop('word'))
-                    xi, yi = vst[-1]
-                    for x, y in [(xi + 1, yi), (xi - 1, yi), (xi, yi + 1), (xi, yi - 1)]:
-                        if 0 <= x < m and 0 <= y < n and (x, y) not in vst and board[x][y] in t:
-                            tmp += [(vst + [(x, y)], t[board[x][y]])]
-                que = tmp
+            board[i1][j1] = "#"
+            for i2, j2 in [(i1 + 1, j1), (i1 - 1, j1), (i1, j1 + 1), (i1, j1 - 1)]:
+                if 0 <= i2 < m and 0 <= j2 < n:
+                    dfs(now, i2, j2)
+            board[i1][j1] = ch
 
+        ans = set()
         m, n = len(board), len(board[0])
+
         for i in range(m):
             for j in range(n):
-                if board[i][j] in d:
-                    bfs(i, j)
-        return sorted(ans)
+                dfs(trie, i, j)
+
+        return list(ans)

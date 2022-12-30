@@ -1,41 +1,35 @@
-class Solution(object):
-    def partition_traceback(self, s):
-        """
-        :type s: str
-        :rtype: List[List[str]]
-        """
-        res = []
+class Solution:
+    def partition(self, s: str) -> List[List[str]]:
+        result = []
+        path = []
 
-        def helper(s, tmp):
-            if not s:
-                res.append(tmp)
-            for i in range(1, len(s) + 1):
-                if s[:i] == s[:i][::-1]:
-                    helper(s[i:], tmp + [s[:i]])
+        # 判断是否是回文串
+        def pending_s(s):
+            l, r = 0, len(s) - 1
+            while l < r:
+                if s[l] != s[r]:
+                    return False
+                l += 1
+                r -= 1
+            return True
 
-        helper(s, [])
-        return res
+        # 回溯函数，这里的index作为遍历到的索引位置，也作为终止判断的条件
+        def back_track(s, index):
+            # 如果对整个字符串遍历完成，并且走到了这一步，则直接加入result
+            if index == len(s):
+                result.append(path[:])
+                return
+            # 遍历每个子串
+            for i in range(index, len(s)):
+                # 剪枝，因为要求每个元素都是回文串，那么我们只对回文串进行递归，不是回文串的部分直接不care它
+                # 当前子串是回文串
+                if pending_s(s[index: i + 1]):
+                    # 加入当前子串到path
+                    path.append(s[index: i + 1])
+                    # 从当前i+1处重复递归
+                    back_track(s, i + 1)
+                    # 回溯
+                    path.pop()
 
-    def partition_dp_dfs(self, s):
-        n = len(s)
-        dp = [[False] * n for _ in range(n)]
-        for i in range(n):
-            for j in range(i + 1):
-                if (s[i] == s[j]) and (i - j <= 2 or dp[j + 1][i - 1]):
-                    dp[j][i] = True
-        res = []
-
-        def helper(i, tmp):
-            if i == n:
-                res.append(tmp)
-            for j in range(i, n):
-                if dp[i][j]:
-                    helper(j + 1, tmp + [s[i: j + 1]])
-
-        helper(0, [])
-        return res
-
-
-if __name__ == '__main__':
-    S = Solution()
-    print(S.partition_traceback("aab"))
+        back_track(s, 0)
+        return result

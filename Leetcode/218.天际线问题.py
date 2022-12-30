@@ -1,111 +1,23 @@
-class Solution(object):
-    def getSkyline(self, buildings):
-        """
-        :type buildings: List[List[int]]
-        :rtype: List[List[int]]
-        分而治之
-        """
-        if not buildings:
-            return []
-        if len(buildings) == 1:
-            return [[buildings[0][0], buildings[0][2]], [buildings[0][1], 0]]
-        mid = len(buildings) // 2
-        left = self.getSkyline(buildings[:mid])
-        right = self.getSkyline(buildings[mid:])
-        return self.merge(left, right)
+class Solution:
+    def getSkyline(self, buildings: List[List[int]]) -> List[List[int]]:
+        events = []
+        # 生成左右端点事件并排序
+        for left, right, height in buildings:
+            events.append([left, -height, right])
+            events.append([right, 0, 0])
+        events.sort()
 
-    # 两个合并
-    def merge(self, left, right):
-        """
-        :type buildings: List[List[int]]
-        :rtype: List[List[int]]
-        二分法
-        """
-        # 记录目前左右建筑物的高度
-        lheight = rheight = 0
-        # 位置
-        l = r = 0
-        # 输出结果
-        res = []
-        while l < len(left) and r < len(right):
-            if left[l][0] < right[r][0]:
-                # current point
-                cp = [left[l][0], max(left[l][1], rheight)]
-                lheight = left[l][1]
-                l += 1
-            elif left[l][0] > right[r][0]:
-                cp = [right[r][0], max(right[r][1], lheight)]
-                rheight = right[r][1]
-                r += 1
-            # 相等情况
-            else:
-                cp = [left[l][0], max(left[l][1], right[r][1])]
-                lheight = left[l][1]
-                rheight = right[r][1]
-                l += 1
-                r += 1
-            # 和前面高度比较，不一样才加入
-            if len(res) == 0 or res[-1][1] != cp[1]:
-                res.append(cp)
-        # 剩余部分添加进去
-        res.extend(left[l:] or right[r:])
-        return res
-
-    def getSkyline_2div(self, buildings):
-        """
-        :type buildings: List[List[int]]
-        :rtype: List[List[int]]
-        二分法
-        """
-        import bisect
+        # 初始化结果与前序高度
         res = [[0, 0]]
-        # 记录 [left, height], [right, height]
-        loc = []
-        for l, r, h in buildings:
-            # 为了排序让 left那边靠前, 所以让高度取负
-            loc.append([l, -h])
-            loc.append([r, h])
-        loc.sort()
-        heap = [0]
-
-        for x, h in loc:
-            if h < 0:
-                bisect.insort(heap, h)
-            else:
-                heap.remove(-h)
-            cur = -heap[0]
-            if res[-1][1] != cur:
-                res.append([x, cur])
-
+        stack = [[0, float('inf')]]
+        for left, height, right in events:
+            # 超出管辖范围的先出队
+            while left >= stack[0][1]:
+                heapq.heappop(stack)
+            # 加入备选天际线队列
+            if height < 0:
+                heapq.heappush(stack, [height, right])
+            # 高度发生变化出现新的关键点
+            if res[-1][1] != -stack[0][0]:
+                res.append([left, -stack[0][0]])
         return res[1:]
-
-    def getSkyline_heapq(self, buildings):
-        """
-        :type buildings: List[List[int]]
-        :rtype: List[List[int]]
-        堆
-        """
-        import bisect
-        res = [[0, 0]]
-        # 记录 [left, height], [right, height]
-        loc = []
-        for l, r, h in buildings:
-            # 为了排序让 left那边靠前, 所以让高度取负
-            loc.append([l, -h])
-            loc.append([r, h])
-        loc.sort()
-        heap = [0]
-        for x, h in loc:
-            if h < 0:
-                bisect.insort(heap, h)
-            else:
-                heap.remove(-h)
-            cur = -heap[0]
-            if res[-1][1] != cur:
-                res.append([x, cur])
-        return res[1:]
-
-
-
-
-
