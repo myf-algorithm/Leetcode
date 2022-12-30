@@ -1,66 +1,35 @@
-class Solution(object):
-    def gameOfLife(self, board):
+class Solution:
+    def gameOfLife(self, board: List[List[int]]) -> None:
         """
-        :type board: List[List[int]]
-        :rtype: None Do not return anything, modify board in-place instead.
+        Do not return anything, modify board in-place instead.
         """
-        row = len(board)
-        col = len(board[0])
-        # 记录每一个位置周围的活细胞的个数
-        recording = [[0] * col for _ in range(row)]
 
-        def helper(i, j):
-            ans = 0
-            for x, y in [[-1, -1],
-                         [-1, 0],
-                         [-1, 1],
-                         [0, -1],
-                         [0, 1],
-                         [1, -1],
-                         [1, 0],
-                         [1, 1]]:
-                tmp_i = i + x
-                tmp_j = j + y
-                if 0 <= tmp_i < row and 0 <= tmp_j < col and board[tmp_i][tmp_j] == 1:
-                    ans += 1
-            return ans
+        neighbors = [(1,0), (1,-1), (0,-1), (-1,-1), (-1,0), (-1,1), (0,1), (1,1)]
 
-        for i in range(row):
-            for j in range(col):
-                recording[i][j] = helper(i, j)
-        for i in range(row):
-            for j in range(col):
-                # 根据条件判断
-                if board[i][j] == 0 and recording[i][j] == 3:
-                    board[i][j] = 1
-                if board[i][j] == 1 and (recording[i][j] < 2 or recording[i][j] > 3):
-                    board[i][j] = 0
+        rows = len(board)
+        cols = len(board[0])
 
-    def gameOfLife_bit(self, board):
-        """
-        :type board: List[List[int]]
-        :rtype: None Do not return anything, modify board in-place instead.
-        """
-        if not board or not board[0]:
-            return
-        rows, cols = len(board), len(board[0])
-        for i in range(0, rows):
-            for j in range(0, cols):
-                lives = self.liveNeighbours(board, rows, cols, i, j)
-                if board[i][j] == 1 and 2 <= lives <= 3:
-                    board[i][j] = 3
+        # 从原数组复制一份到 copy_board 中
+        copy_board = [[board[row][col] for col in range(cols)] for row in range(rows)]
 
-                if board[i][j] == 0 and lives == 3:
-                    board[i][j] = 2
-        for i in range(0, rows):
-            for j in range(0, cols):
-                board[i][j] >>= 1
+        # 遍历面板每一个格子里的细胞
+        for row in range(rows):
+            for col in range(cols):
 
-    def liveNeighbours(self, board, rows, cols, i, j):
-        direction = [(-1, -1), (0, -1), (1, -1), (1, 0), (1, 1), (0, 1), (-1, 1), (-1, 0)]
-        count = 0
-        for d in direction:
-            ni, nj = d[0] + i, d[1] + j
-            if 0 <= ni < rows and 0 <= nj < cols:
-                count += (board[ni][nj] & 1)
-        return count
+                # 对于每一个细胞统计其八个相邻位置里的活细胞数量
+                live_neighbors = 0
+                for neighbor in neighbors:
+
+                    r = (row + neighbor[0])
+                    c = (col + neighbor[1])
+
+                    # 查看相邻的细胞是否是活细胞
+                    if (r < rows and r >= 0) and (c < cols and c >= 0) and (copy_board[r][c] == 1):
+                        live_neighbors += 1
+
+                # 规则 1 或规则 3
+                if copy_board[row][col] == 1 and (live_neighbors < 2 or live_neighbors > 3):
+                    board[row][col] = 0
+                # 规则 4
+                if copy_board[row][col] == 0 and live_neighbors == 3:
+                    board[row][col] = 1
