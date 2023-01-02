@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="306b0362-2578-4c41-a01a-f0fa10d2ffee" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notebook/backtrack.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Notebook/backtrack.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +70,7 @@
       <workItem from="1581507459334" duration="483000" />
       <workItem from="1672664514917" duration="2229000" />
       <workItem from="1672666766833" duration="1799000" />
-      <workItem from="1672669942036" duration="945000" />
+      <workItem from="1672669942036" duration="1316000" />
     </task>
     <task id="LOCAL-00001" summary="修改readme文件">
       <created>1581507558427</created>
