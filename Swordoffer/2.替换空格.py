@@ -10,4 +10,4 @@ class Solution:
 
 if __name__ == '__main__':
     S = Solution()
-    print(S.replaceSpace('ji kkkda hj'))
+    print(S.replaceSpace('ji GIT hj'))
