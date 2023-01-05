@@ -56,9 +56,10 @@ class Solution:
             keys[n] = i
 
 
-nums = [1, 2, 5, 6]
-target = 7
-S = Solution()  # 实例化对象
-print(S.twoSum(nums, target))
-for i, num in enumerate(nums):
-    print(str(i) + ' ' + str(num))
+if __name__ == '__main__':
+    nums = [1, 2, 5, 6]
+    target = 7
+    S = Solution()  # 实例化对象
+    print(S.twoSum(nums, target))
+    for i, num in enumerate(nums):
+        print(str(i) + ' ' + str(num))
