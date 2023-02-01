@@ -1,7 +1,6 @@
 from typing import List
 
 
-# dp[i][j]是代表的以坐标点(i,j)为右下角的最大正方形的边长，这个正方形右下角是(i,j)点才可以
 class Solution:
     def maximalSquare(self, matrix: List[List[str]]) -> int:
         if len(matrix) == 0 and len(matrix[0]) == 0:

@@ -7,6 +7,7 @@ def uniquePaths(self, m: int, n: int) -> int:
 
 def uniquePaths_dp(self, m: int, n: int) -> int:
     """
+    m * n的方格，从左上角走到右下角
     dp[i][j]是到达i, j最多路径
     动态方程：dp[i][j] = dp[i-1][j] + dp[i][j-1]
     对于第一行dp[0][j]，或者第一列dp[i][0]，由于都是在边界，所以只能为1

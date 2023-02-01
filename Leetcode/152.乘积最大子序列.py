@@ -18,10 +18,3 @@ class Solution(object):
             pre_max = cur_max
             pre_min = cur_min
         return res
-
-    def maxProduct_1(self, nums):
-        reverse_nums = nums[::-1]
-        for i in range(1, len(nums)):
-            nums[i] *= nums[i - 1] or 1
-            reverse_nums[i] *= reverse_nums[i - 1] or 1
-        return max(nums + reverse_nums)
