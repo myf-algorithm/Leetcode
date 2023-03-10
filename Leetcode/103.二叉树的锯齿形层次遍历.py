@@ -52,48 +52,6 @@ class Solution(object):
         helper(root, 0)
         return res
 
-    def zigzagLevelOrder2(self, root):
-        """
-        双栈实现
-        """
-        if not root:
-            return []
-
-        d1 = []  # 从左向右存储的栈
-        d2 = []  # 从右向左存储的栈 d2和d1完成锯齿状存储的任务
-        res = []  # 保存输出结果
-        tmp = []  # 临时存储结果
-        d1.append(root)
-        while (True):
-            while d1:
-                curr = d1[-1]
-                d1.pop()
-                tmp.append(curr.val)
-                if curr.left:  # 左边的节点先入栈
-                    d2.append(curr.left)
-                if curr.right:
-                    d2.append(curr.right)
-            if tmp:
-                res.append(tmp)
-                tmp = []
-            else:
-                break
-
-            while d2:
-                curr = d2[-1]
-                d2.pop()
-                tmp.append(curr.val)
-                if curr.right:  # 这里是右边的节点先入栈
-                    d1.append(curr.right)
-                if curr.left:
-                    d1.append(curr.left)
-            if tmp:
-                res.append(tmp)
-                tmp = []
-            else:
-                break
-        return res
-
 
 if __name__ == '__main__':
     S = Solution()

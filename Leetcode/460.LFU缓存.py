@@ -2,75 +2,68 @@ import collections
 
 
 class Node:
-    def __init__(self, key, val, pre=None, nex=None, freq=0):
-        self.pre = pre
-        self.nex = nex
-        self.freq = freq
-        self.val = val
-        self.key = key
+    def __init__(self, keys=collections.deque(), count=0):
+        self.keys = keys
+        self.count = count
+        self.left = None
+        self.right = None
 
-    def insert(self, nex):
-        nex.pre = self
-        nex.nex = self.nex
-        self.nex.pre = nex
-        self.nex = nex
+    def insert(self, new):
+        new.right = self.right
+        new.left = self
+        new.right.left = new
+        new.left.right = new
 
-
-def create_linked_list():
-    head = Node(0, 0)
-    tail = Node(0, 0)
-    head.nex = tail
-    tail.pre = head
-    return (head, tail)
+    def remove(self):
+        self.left.right = self.right
+        self.right.left = self.left
 
 
-# freqMap：以频率 freq 为索引，每个索引存放一个双向链表，这个链表里存放所有使用频率为 freq 的缓存，缓存里存放三个信息，分别为键 key，值 value，以及使用频率 freq
-# keyMap：以键值 key 为索引，每个索引存放对应缓存在 freq_table 中链表里的内存地址
-# minFreq：记录一个当前缓存最少使用的频率，为删除操作服务
 class LFUCache:
     def __init__(self, capacity: int):
-        self.capacity = capacity
-        self.size = 0
-        self.minFreq = 0
-        self.freqMap = collections.defaultdict(create_linked_list)
-        self.keyMap = {}
-
-    def delete(self, node):
-        if node.pre:
-            node.pre.nex = node.nex
-            node.nex.pre = node.pre
-            if node.pre is self.freqMap[node.freq][0] and node.nex is self.freqMap[node.freq][-1]:
-                self.freqMap.pop(node.freq)
-        return node.key
-
-    def increase(self, node):
-        node.freq += 1
-        self.delete(node)
-        self.freqMap[node.freq][-1].pre.insert(node)
-        if node.freq == 1:
-            self.minFreq = 1
-        elif self.minFreq == node.freq - 1:
-            head, tail = self.freqMap[node.freq - 1]
-            if head.nex is tail:
-                self.minFreq = node.freq
+        self.memo = {}
+        self.kv = {}
+        self.root = Node()
+        self.root.right = self.root
+        self.root.left = self.root
+        self.cap = capacity
 
     def get(self, key: int) -> int:
-        if key in self.keyMap:
-            self.increase(self.keyMap[key])
-            return self.keyMap[key].val
-        return -1
+        if key not in self.kv:
+            return -1
+        res = self.kv[key]
+        if self.memo[key].right.count == self.memo[key].count + 1:
+            self.memo[key].right.keys.append(key)
+        else:
+            new = Node(keys=collections.deque([key]), count=self.memo[key].count + 1)
+            self.memo[key].insert(new)
+
+        tmp = self.memo[key].right
+
+        self.memo[key].keys.remove(key)
+        if not self.memo[key].keys:
+            self.memo[key].remove()
+        self.memo[key] = tmp
+        return res
 
     def put(self, key: int, value: int) -> None:
-        if self.capacity != 0:
-            if key in self.keyMap:
-                node = self.keyMap[key]
-                node.val = value
+        if key not in self.kv:
+            if len(self.kv) == self.cap:
+                to_pop = self.root.right.keys.popleft()
+                if not self.root.right.keys:
+                    self.root.right.remove()
+                self.kv.pop(to_pop)
+                self.memo.pop(to_pop)
+
+            self.kv[key] = value
+            if self.root.right.count == 1:
+                self.root.right.keys.append(key)
             else:
-                node = Node(key, value)
-                self.keyMap[key] = node
-                self.size += 1
-            if self.size > self.capacity:
-                self.size -= 1
-                deleted = self.delete(self.freqMap[self.minFreq][0].nex)
-                self.keyMap.pop(deleted)
-            self.increase(node)
+                new = Node(keys=collections.deque([key]), count=1)
+                self.root.insert(new)
+
+            self.memo[key] = self.root.right
+
+        else:
+            self.get(key)
+            self.kv[key] = value
