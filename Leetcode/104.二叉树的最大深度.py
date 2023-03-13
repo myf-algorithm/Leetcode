@@ -8,14 +8,10 @@ class TreeNode(object):
 
 class Solution(object):
     def maxDepth_bfs(self, root):
-        """
-        :type root: TreeNode
-        :rtype: int
-        bfs获取二叉树的最大深度
-        """
         if root is None:
             return 0
         queue = [(1, root)]
+        depth = 0
         while queue:
             depth, node = queue.pop(0)
             if node.left:
@@ -25,11 +21,6 @@ class Solution(object):
         return depth
 
     def maxDepth_dfs(self, root):
-        """
-        :type root: TreeNode
-        :rtype: int
-        dfs先序遍历，获取二叉树的最大深度
-        """
         if root is None:
             return 0
 
@@ -45,11 +36,6 @@ class Solution(object):
         return depth
 
     def maxDepth_dfs_r(self, root):
-        """
-        :type root: TreeNode
-        :rtype: int
-        递归，dfs先序遍历，获取二叉树的最大深度
-        """
         if root is None:
             return 0
         else:

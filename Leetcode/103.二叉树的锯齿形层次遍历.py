@@ -8,10 +8,6 @@ class TreeNode(object):
 
 class Solution(object):
     def zigzagLevelOrder(self, root):
-        """
-        :type root: TreeNode
-        :rtype: List[List[int]]
-        """
         if not root:
             return []
         res = []
@@ -37,7 +33,7 @@ class Solution(object):
     def zigzagLevelOrder1(self, root):
         res = []
 
-        def helper(root, depth):
+        def traverse(root, depth):
             if not root:
                 return
             if len(res) == depth:
@@ -46,10 +42,10 @@ class Solution(object):
                 res[depth].append(root.val)
             else:
                 res[depth].insert(0, root.val)
-            helper(root.left, depth + 1)
-            helper(root.right, depth + 1)
+            traverse(root.left, depth + 1)
+            traverse(root.right, depth + 1)
 
-        helper(root, 0)
+        traverse(root, 0)
         return res
 
 
