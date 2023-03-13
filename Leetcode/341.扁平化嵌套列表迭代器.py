@@ -1,9 +1,3 @@
-"""
-This is the interface that allows for creating nested lists.
-You should not implement it, or speculate about its implementation
-"""
-
-
 class NestedInteger(object):
     def isInteger(self):
         """
@@ -58,8 +52,3 @@ class NestedIterator(object):
             return True
         except:
             return False
-
-
-# Your NestedIterator object will be instantiated and called as such:
-# i, v = NestedIterator(nestedList), []
-# while i.hasNext(): v.append(i.next())

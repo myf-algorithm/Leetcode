@@ -12,10 +12,6 @@ class Node(object):
 
 class Solution(object):
     def copyRandomList_dfs(self, head):
-        """
-        :type head: Node
-        :rtype: Node
-        """
         lookup = {}
 
         def dfs(head):

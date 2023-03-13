@@ -1,10 +1,5 @@
 class Solution(object):
     def minWindow(self, s, t):
-        """
-        :type s: str
-        :type t: str
-        :rtype: str
-        """
         from collections import defaultdict
         findout = defaultdict(int)
         for i in t:

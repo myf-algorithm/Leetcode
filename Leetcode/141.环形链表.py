@@ -7,10 +7,6 @@ class ListNode(object):
 
 class Solution(object):
     def hasCycle(self, head):
-        """
-        :type head: ListNode
-        :rtype: bool
-        """
         fast, slow = head, head
         while fast and fast.next:
             fast = fast.next.next
@@ -20,10 +16,6 @@ class Solution(object):
         return False
 
     def hasCycle_set(self, head):
-        """
-        :type head: ListNode
-        :rtype: bool
-        """
         hash_set = set()
         while head:
             if head in hash_set:
@@ -33,10 +25,6 @@ class Solution(object):
         return False
 
     def hasCycle_none(self, head):
-        """
-        :type head: ListNode
-        :rtype: bool
-        """
         if not head:
             return False
         while head.next and head.val != None:

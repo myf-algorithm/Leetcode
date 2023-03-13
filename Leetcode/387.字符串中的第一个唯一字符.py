@@ -1,9 +1,5 @@
 class Solution(object):
     def firstUniqChar(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
         dic = {}
 
         for c in s:
@@ -18,10 +14,6 @@ class Solution(object):
         return -1
 
     def firstUniqChar1(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
         dic = {c: s.count(c) for c in set(s)}
         for i in range(len(s)):
             if dic[s[i]] == 1:

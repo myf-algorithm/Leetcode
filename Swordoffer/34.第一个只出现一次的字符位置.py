@@ -14,7 +14,6 @@ class Solution:
         return -1
 
 
-# 阿里达摩院机器翻译实习1面
 class solution1:
     def __init__(self):
         self.dic = {}

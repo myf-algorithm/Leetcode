@@ -1,9 +1,5 @@
 class Solution(object):
     def evalRPN(self, tokens):
-        """
-        :type tokens: List[str]
-        :rtype: int
-        """
         stack = []
         for i in tokens:
             if i in {'+', '-', '*', '/'}:

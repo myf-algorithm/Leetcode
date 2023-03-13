@@ -6,11 +6,9 @@ class ListNode:
 
 
 class Solution:
-    def __init__(self):  # 哨兵节点
-        self.head = ListNode(0)
-
     def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
-        p = self.head
+        dummy = ListNode(0)
+        p = dummy
         p.next = head
         i = 0
         while p:

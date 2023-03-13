@@ -6,15 +6,8 @@ class ListNode:
         self.next = None
 
 
-#
-#
-# @param head ListNode类
-# @param x int整型
-# @return ListNode类
-#
 class Solution:
     def partition(self, head, x):
-        # write code here
         if not head or not head.next:
             return head
         head1 = ListNode(0)

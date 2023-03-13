@@ -1,9 +1,5 @@
 class Solution(object):
     def rotate(self, matrix):
-        """
-        :type matrix: List[List[int]]
-        :rtype: None Do not return anything, modify matrix in-place instead.
-        """
         # 进行矩阵的转置
         for x in range(len(matrix)):
             for y in range(x):

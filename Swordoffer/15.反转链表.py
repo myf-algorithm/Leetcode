@@ -9,17 +9,7 @@ class ListNode:
 
 
 class Solution:
-    def ReverseList(self, pHead):
-        head = None
-        while pHead:
-            tmp = ListNode(pHead.val)  # 使用当前位置的值创建一个新节点
-            tmp.next = head  # 令新节点指向head，此时方向已经反过来了
-            head = tmp  # 更新head为新节点
-            pHead = pHead.next  # 移动到下一个位置
-        return head
-
     def ReverseList_point(self, pHead):
-        # write code here
         if pHead == None:
             return pHead
         pre = None

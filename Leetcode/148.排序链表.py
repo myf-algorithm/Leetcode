@@ -7,10 +7,6 @@ class ListNode(object):
 
 class Solution(object):
     def sortList(self, head):
-        """
-        :type head: ListNode
-        :rtype: ListNode
-        """
         if not head or not head.next:  # 递归终止条件
             return head
         slow, fast = head, head.next  # 使用快慢指针寻找中间节点
@@ -30,10 +26,6 @@ class Solution(object):
         return res.next
 
     def sortList_iter(self, head):
-        """
-        :type head: ListNode
-        :rtype: ListNode
-        """
         h, length, intv = head, 0, 1
         while h:
             h, length = h.next, length + 1

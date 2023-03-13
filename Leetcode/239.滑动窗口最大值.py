@@ -3,11 +3,6 @@ from collections import deque
 
 class Solution(object):
     def maxSlidingWindow(self, nums, k):
-        """
-        :type nums: List[int]
-        :type k: int
-        :rtype: List[int]
-        """
         q, res = [], []
         for i in range(len(nums)):
             if not q:  # 如果为空直接加入队列

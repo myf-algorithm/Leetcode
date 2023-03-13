@@ -14,7 +14,7 @@ class Solution:
     def KthNode(self, pRoot, k):
         stack = []
         while True:
-            if pRoot:   # 一直遍历到pRoot的最左子节点
+            if pRoot:  # 一直遍历到pRoot的最左子节点
                 stack.append(pRoot)
                 pRoot = pRoot.left
             else:

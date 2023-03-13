@@ -1,9 +1,6 @@
 class Solution(object):
     def sortColors(self, nums):
         """
-        :type nums: List[int]
-        :rtype: None Do not return anything, modify nums in-place instead.
-
         初始化0的最右边界：p0 = 0。在整个算法执行过程中 nums[idx < p0] = 0.
         初始化2的最左边界 ：p2 = n - 1。在整个算法执行过程中 nums[idx > p2] = 2.
         初始化当前考虑的元素序号 ：curr = 0.

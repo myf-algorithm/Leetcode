@@ -29,25 +29,6 @@ class Solution:
             return False
         return subtree(pRoot1, pRoot2)
 
-    # 递归
-    # 如果当前节点的val一样，则用issubTree判断左右节点是否一样
-    # 一直递归到pRoot2位空代表是包含，否则返回False
-    # 如果不一样，则递归左右子树
-    # 因为or返回第一个为真的对象，所以不用担心内存过大
-    def HasSubtree_1(self, pRoot1, pRoot2):
-        if not pRoot2 or not pRoot1:
-            return False
-        # 返回第一个为真的值，剩下的不在计算
-        return self.issubtree(pRoot1, pRoot2) or \
-               self.HasSubtree_1(pRoot1.left, pRoot2) or \
-               self.HasSubtree_1(pRoot1.right, pRoot2)
-
-    def issubtree(self, pRoot1, pRoot2):
-        if pRoot2 == None: return True  # 这一行与下一行不能对换，因为存在pRoot1和2都是空的情况
-        if pRoot1 == None: return False
-        if pRoot1.val == pRoot2.val:
-            return self.issubtree(pRoot1.left, pRoot2.left) and self.issubtree(pRoot1.right, pRoot2.right)
-
 
 if __name__ == '__main__':
     S = Solution()
@@ -73,4 +54,4 @@ if __name__ == '__main__':
     node6.left = node7
     node6.right = node8
 
-    print(S.HasSubtree_1(root, node6))
+    print(S.HasSubtree(root, node6))

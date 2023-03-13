@@ -6,7 +6,7 @@
 #         self.right = None
 
 class Solution:
-    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+    def lowestCommonAncestor(self, root, p, q):
         if not root:
             return None
         # 边界条件，如果匹配到left或right就直接返回停止递归

@@ -1,10 +1,5 @@
 class Solution(object):
     def reverseString_rec(self, s):
-        """
-        :type s: List[str]
-        :rtype: None Do not return anything, modify s in-place instead.
-        """
-
         def recur(tmps):
             if len(tmps) <= 1:
                 return tmps
@@ -14,10 +9,6 @@ class Solution(object):
         s[:] = recur(s)
 
     def reverseString_double_point(self, s):
-        """
-        :type s: List[str]
-        :rtype: None Do not return anything, modify s in-place instead.
-        """
         i, j = 0, len(s) - 1
         while i < j:
             s[i], s[j] = s[j], s[i]
@@ -25,11 +16,6 @@ class Solution(object):
             j -= 1
 
     def reverseString_rec_double_point(self, s):
-        """
-        :type s: List[str]
-        :rtype: None Do not return anything, modify s in-place instead.
-        """
-
         def recur_(s, i, j):
             if i >= j:
                 return

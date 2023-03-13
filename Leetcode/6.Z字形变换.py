@@ -1,10 +1,5 @@
 class Solution(object):
     def convert(self, s, numRows):
-        """
-        :type s: str
-        :type numRows: int
-        :rtype: str
-        """
         if numRows < 2:
             return s
         res = ["" for _ in range(numRows)]

@@ -6,33 +6,6 @@
 # 例如，字符串"aaa"与模式"a.a"和"ab*ac*a"匹配，
 # 但是与"aa.a"和"ab*a"均不匹配
 
-
-class Solution_so:
-    def isMatch(self, string: str, pattern: str) -> bool:
-        m = len(string)
-        n = len(pattern)
-        if not m and not n:
-            return True
-        dp = [[False] * (n + 1) for _ in range(m + 1)]
-        string = '#' + string
-        pattern = '#' + pattern
-
-        dp[0][0] = True
-        for i in range(m + 1):
-            for j in range(1, n + 1):
-                if i == 0:
-                    if j > 1 and pattern[j] == '*':
-                        dp[i][j] = dp[i][j - 2]
-                elif string[i] == pattern[j] or pattern[j] == '.':
-                    dp[i][j] = dp[i - 1][j - 1]
-                elif pattern[j] == '*':
-                    if string[i] == pattern[j - 1] or pattern[j - 1] == '.':
-                        dp[i][j] = dp[i - 1][j] or dp[i][j - 2]
-                    else:
-                        dp[i][j] = dp[i][j - 2]
-        return dp[m][n]
-
-
 import re
 
 

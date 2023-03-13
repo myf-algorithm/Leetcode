@@ -1,9 +1,5 @@
 class Solution(object):
     def largestNumber(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: str
-        """
         from functools import cmp_to_key
         def helper(x, y):
             if x + y > y + x:

@@ -29,9 +29,8 @@ class Solution:
         return max_l
 
 
-class Solution2:
+class Solution1:
     def maxLength(self, arr):
-        # write code here
         if not arr:
             return 0
         max_len = 1

@@ -13,10 +13,6 @@ class Node(object):
 
 class Solution(object):
     def connect(self, root):
-        """
-        :type root: Node
-        :rtype: Node
-        """
         if not root:
             return
         if root.left:
@@ -28,10 +24,6 @@ class Solution(object):
         return root
 
     def connect_iter(self, root):
-        """
-        :type root: Node
-        :rtype: Node
-        """
         pre = root
         while pre:
             cur = pre

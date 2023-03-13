@@ -7,9 +7,6 @@ class ListNode:
 
 class Solution:
     def reorderList(self, head: ListNode) -> None:
-        """
-        Do not return anything, modify head in-place instead.
-        """
         if head:
             slow, fast = head, head
             while fast and fast.next:

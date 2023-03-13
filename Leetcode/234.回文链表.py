@@ -7,10 +7,6 @@ class ListNode(object):
 
 class Solution(object):
     def isPalindrome(self, head):
-        """
-        :type head: ListNode
-        :rtype: bool
-        """
         if not (head and head.next):
             return True
         arr, i = [], 0

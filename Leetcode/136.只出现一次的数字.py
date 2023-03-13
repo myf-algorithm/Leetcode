@@ -1,9 +1,5 @@
 class Solution(object):
     def singleNumber(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
         hash_table = {}
         for i in nums:
             try:

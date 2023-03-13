@@ -1,10 +1,5 @@
 class Solution(object):
     def searchMatrix(self, matrix, target):
-        """
-        :type matrix: List[List[int]]
-        :type target: int
-        :rtype: bool
-        """
         if not matrix:
             return False
         row = len(matrix)
@@ -21,11 +16,6 @@ class Solution(object):
         return False
 
     def searchMatrix1(self, matrix, target):
-        """
-        :type matrix: List[List[int]]
-        :type target: int
-        :rtype: bool
-        """
         if len(matrix) == 0 or len(matrix[0]) == 0:
             return False
         m, n = len(matrix), len(matrix[0])

@@ -5,7 +5,6 @@
 
 
 class Solution:
-    # 返回 RandomListNode
     def Permutation(self, ss):
         def dfs(s):
             if len(s) == '':

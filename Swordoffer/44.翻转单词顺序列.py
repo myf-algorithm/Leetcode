@@ -13,7 +13,6 @@ class Solution:
         return " ".join(ret)
 
 
-
 if __name__ == "__main__":
     S = Solution()
     print(S.ReverseSentence('student. a am I'))

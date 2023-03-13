@@ -15,15 +15,3 @@ class Solution(object):
                 else:
                     h[- a - b] = 1
         return sum(h[c + d] for c in C for d in D if c + d in h)
-
-        # import collections
-        # h = collections.defaultdict(int)
-        # for a in A:
-        #     for b in B:
-        #         h[-a - b] += 1
-        # return sum(h[c + d] for c in C for d in D)
-
-        # import collections
-        # h = collections.Counter(-a - b for a in A for b in B)
-        # return sum(h[c + d] for c in C for d in D)
-

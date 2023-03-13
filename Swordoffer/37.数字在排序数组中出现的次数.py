@@ -11,30 +11,6 @@ class Solution:
         return num
 
 
-class Solution1:
-    def GetNumberOfK(self, data, k):
-        """
-        二分查找到给定的数字及其坐标
-        以该坐标为中点，向前向后找到这个数字的始–终位置
-        """
-        if len(data) < 1:
-            return 0
-        mid = len(data) // 2
-        if data[mid] == k:
-            start, end = mid, mid
-            for i in range(mid, -1, -1):
-                if data[i] == k:
-                    start -= 1
-            for j in range(mid + 1, len(data)):
-                if data[j] == k:
-                    end += 1
-            return end - start
-        elif data[mid] > k:
-            return self.GetNumberOfK(data[:mid], k)
-        else:
-            return self.GetNumberOfK(data[mid + 1:], k)
-
-
 class Solution2:
     def GetNumberOfK(self, data, k):
         left = 0

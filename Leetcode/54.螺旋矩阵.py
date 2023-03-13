@@ -1,12 +1,5 @@
-#-*- coding:utf-8 -*-
-
-
 class Solution(object):
     def spiralOrder(self, matrix):
-        """
-        :type matrix: List[List[int]]
-        :rtype: List[int]
-        """
         if not matrix:
             return []
         R, C = len(matrix), len(matrix[0])  # 矩阵的行数，列数

@@ -8,12 +8,6 @@ class TreeNode(object):
 
 class Solution(object):
     def kthSmallest(self, root, k):
-        """
-        :type root: TreeNode
-        :type k: int
-        :rtype: int
-        递归，中序遍历
-        """
         self.res, self.count = None, k
 
         def inorder(root):
@@ -27,23 +21,3 @@ class Solution(object):
 
         inorder(root)
         return self.res
-
-    def kthSmallest1(self, root, k):
-        """
-        :type root: TreeNode
-        :type k: int
-        :rtype: int
-        迭代方法
-        """
-        cur = root
-        stack = []
-        while cur or stack:
-            while cur:
-                stack.append(cur)
-                cur = cur.left
-            tmp = stack.pop()
-            k -= 1
-            if k == 0:
-                return tmp.val
-            if tmp.right:
-                cur = tmp.right

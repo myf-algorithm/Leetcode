@@ -1,9 +1,5 @@
 class Solution(object):
     def productExceptSelf(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: List[int]
-        """
         # 不要使用除法，就不能先算出总乘积，然后一个一个的除；
         # 如果要时间复杂度为O(n)，则必须想办法不做重复的乘法计算；
 
@@ -21,10 +17,6 @@ class Solution(object):
         return [pre[i] * post[-(i + 1)] for i in range(len(pre))]
 
     def productExceptSelf_1(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: List[int]
-        """
         # 从前到后计算前缀积，初始值为1，终点是倒数第二个元素
         output = [1]
         for i in nums[:-1]:

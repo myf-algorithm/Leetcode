@@ -1,10 +1,5 @@
 class Solution(object):
     def canCompleteCircuit(self, gas, cost):
-        """
-        :type gas: List[int]
-        :type cost: List[int]
-        :rtype: int
-        """
         location = 0
         total_sum = 0
         if sum(gas) < sum(cost):

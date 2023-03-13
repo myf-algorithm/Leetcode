@@ -24,4 +24,5 @@ class Solution:
             root.left = build_tree(preorder[1:index + 1], postorder[:index])
             root.right = build_tree(preorder[index + 1:], postorder[index:-1])
             return root
+
         return build_tree(preorder, postorder)

@@ -1,9 +1,5 @@
 class Solution(object):
     def maxPoints(self, points):
-        """
-        :type points: List[List[int]]
-        :rtype: int
-        """
         from collections import Counter, defaultdict
         # 所有点统计
         points_dict = Counter(tuple(point) for point in points)

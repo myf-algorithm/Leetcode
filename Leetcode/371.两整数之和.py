@@ -1,12 +1,5 @@
 class Solution(object):
     def getSum(self, a, b):
-        """
-        :type a: int
-        :type b: int
-        :rtype: int
-        """
-        # return sum([a, b])
-        # return a.__add__(b)
         # 2^32
         MASK = 0x100000000
         # 整型最大值

@@ -23,8 +23,6 @@ class Solution(object):
         # 返回结果列表
         return [value for value in dic.values()]
 
-
-
     def groupAnagrams1(self, strs: List[str]) -> List[List[str]]:
         """
         使用库函数

@@ -1,9 +1,5 @@
 class Solution(object):
     def isPalindrome(self, s):
-        """
-        :type s: str
-        :rtype: bool
-        """
         s_filter = []
         for i in s:
             if i.isdigit() or i.isalpha():

@@ -7,10 +7,6 @@ class ListNode(object):
 
 class Solution(object):
     def reverseList(self, head):
-        """
-        :type head: ListNode
-        :rtype: ListNode
-        """
         if head == None or head.next == None:
             return head
 
@@ -24,10 +20,6 @@ class Solution(object):
         return pre
 
     def reverseList_r(self, head):
-        """
-        :type head: ListNode
-        :rtype: ListNode
-        """
         if head == None or head.next == None:
             return head
         next_node = head.next

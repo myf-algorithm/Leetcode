@@ -8,12 +8,6 @@ class TreeNode(object):
 
 class Codec:
     def serialize(self, root):
-        """
-        Encodes a tree to a single string.
-        :type root: TreeNode
-        :rtype: str
-        """
-
         def rserialize(root, string):
             if root is None:
                 string += 'None,'
@@ -26,12 +20,6 @@ class Codec:
         return rserialize(root, '')
 
     def deserialize(self, data):
-        """
-        Decodes your encoded data to tree.
-        :type data: str
-        :rtype: TreeNode
-        """
-
         def rdeserialize(l):
             if l[0] == 'None':
                 l.pop(0)

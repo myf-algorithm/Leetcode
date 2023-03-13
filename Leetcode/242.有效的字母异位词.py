@@ -1,10 +1,5 @@
 class Solution(object):
     def isAnagram(self, s, t):
-        """
-        :type s: str
-        :type t: str
-        :rtype: bool
-        """
         s = [i for i in s]
         t = [i for i in t]
         s.sort()
@@ -17,20 +12,10 @@ class Solution(object):
         return True
 
     def isAnagram1(self, s, t):
-        """
-        :type s: str
-        :type t: str
-        :rtype: bool
-        """
         import collections
         return collections.Counter(s) == collections.Counter(t)
 
     def isAnagram_hash(self, s, t):
-        """
-        :type s: str
-        :type t: str
-        :rtype: bool
-        """
         dic = {}
 
         for i in s:

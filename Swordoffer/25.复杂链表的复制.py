@@ -12,7 +12,6 @@ class RandomListNode:
 
 
 class Solution:
-    # 返回 RandomListNode
     def Clone(self, pHead):
         if pHead == None:
             return None

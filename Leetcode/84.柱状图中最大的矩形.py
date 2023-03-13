@@ -1,9 +1,5 @@
 class Solution(object):
     def largestRectangleArea(self, heights):
-        """
-        :type heights: List[int]
-        :rtype: int
-        """
         if not heights:
             return 0
         n = len(heights)

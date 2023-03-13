@@ -21,25 +21,6 @@ class Solution:
         return False
 
 
-class Solution1:
-    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        cur_col = len(matrix[0]) - 1
-        cur_row = 0
-        while cur_col >= 0 and cur_row <= len(matrix) - 1:
-            cur_num = matrix[cur_row][cur_col]
-            if cur_num == target:
-                return True
-            if cur_num > target:
-                cur_col -= 1
-            if cur_num < target:
-                cur_row += 1
-        return False
-
-
-
 if __name__ == '__main__':
     S = Solution()
     print(S.Find(3, [[1, 2], [3, 4]]))
-
-
-

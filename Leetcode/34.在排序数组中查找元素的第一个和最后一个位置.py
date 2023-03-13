@@ -1,10 +1,5 @@
 class Solution(object):
     def searchRange(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
-        """
         # 取起始下标
         l, r = 0, len(nums) - 1
         while l < r:
